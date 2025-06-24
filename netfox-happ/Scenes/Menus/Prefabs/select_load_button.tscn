@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://mqaj15h8ryjl"]
+
+[ext_resource type="Script" uid="uid://d0pyn2r134p6a" path="res://Scenes/Menus/Prefabs/ButtonSelectLoad.gd" id="1_kruq0"]
+
+[node name="SelectLoadButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1033.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Foobar"
+autowrap_mode = 2
+script = ExtResource("1_kruq0")
+
+[connection signal="button_down" from="." to="." method="on_clicked"]

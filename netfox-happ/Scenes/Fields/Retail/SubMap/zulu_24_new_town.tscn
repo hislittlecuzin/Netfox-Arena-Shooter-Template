@@ -1,0 +1,158 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxj0bqvodbdvx"]
+
+[ext_resource type="Script" uid="uid://bdbdlme8ow6yo" path="res://Scripts/Field And Game Mode/FieldManager.gd" id="1_ui7xj"]
+[ext_resource type="Texture2D" uid="uid://b3gffhuk8wv46" path="res://Art/Models/Scenery/Generic/Foliage/Grass/No Model Textures/Grass Ground Template.jpg" id="2_xudj8"]
+[ext_resource type="PackedScene" uid="uid://ca2i5dluphdpc" path="res://Art/Models/Scenery/Field/Zulu 24/New Town/Close Centre Building.glb" id="3_oukuc"]
+[ext_resource type="PackedScene" uid="uid://c6natgs08ja14" path="res://Art/Models/Scenery/Field/Zulu 24/New Town/Brown Square.glb" id="4_xge0y"]
+[ext_resource type="PackedScene" uid="uid://ckx81eieiac8i" path="res://Art/Models/Scenery/Field/Zulu 24/New Town/Far Centre Building.glb" id="5_rkf6c"]
+[ext_resource type="PackedScene" uid="uid://c3wy0tqgkvaq8" path="res://Art/Models/Scenery/Field/Zulu 24/New Town/L Shape.glb" id="6_dpktr"]
+[ext_resource type="PackedScene" uid="uid://ma6111gfa2h0" path="res://Art/Models/Scenery/Field/Zulu 24/New Town/White I Building.glb" id="7_e2rm5"]
+[ext_resource type="PackedScene" uid="uid://bato7c3ru32qm" path="res://Art/Models/Scenery/Field/Zulu 24/New Town/Flank Building.glb" id="8_ya2vu"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8eaef"]
+properties/0/path = NodePath(".:red_score")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:blue_score")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:game_timer")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oukuc"]
+albedo_texture = ExtResource("2_xudj8")
+uv1_triplanar = true
+
+[node name="Zulu 24 New Town" type="Node3D" node_paths=PackedStringArray("red_spawns", "blue_spawns")]
+script = ExtResource("1_ui7xj")
+red_spawns = [NodePath("Spawn Points/Red Spawns/Red Spawn"), NodePath("Spawn Points/Red Spawns/Red Spawn2"), NodePath("Spawn Points/Red Spawns/Red Spawn3"), NodePath("Spawn Points/Red Spawns/Red Spawn4"), NodePath("Spawn Points/Red Spawns/Red Spawn5"), NodePath("Spawn Points/Red Spawns/Red Spawn6"), NodePath("Spawn Points/Red Spawns/Red Spawn7"), NodePath("Spawn Points/Red Spawns/Red Spawn8"), NodePath("Spawn Points/Red Spawns/Red Spawn9"), NodePath("Spawn Points/Red Spawns/Red Spawn10"), NodePath("Spawn Points/Red Spawns/Red Spawn11"), NodePath("Spawn Points/Red Spawns/Red Spawn12")]
+blue_spawns = [NodePath("Spawn Points/Blue Spawns/Blue Spawn"), NodePath("Spawn Points/Blue Spawns/Blue Spawn2"), NodePath("Spawn Points/Blue Spawns/Blue Spawn3"), NodePath("Spawn Points/Blue Spawns/Blue Spawn4"), NodePath("Spawn Points/Blue Spawns/Blue Spawn5"), NodePath("Spawn Points/Blue Spawns/Blue Spawn6"), NodePath("Spawn Points/Blue Spawns/Blue Spawn7"), NodePath("Spawn Points/Blue Spawns/Blue Spawn8"), NodePath("Spawn Points/Blue Spawns/Blue Spawn9"), NodePath("Spawn Points/Blue Spawns/Blue Spawn10"), NodePath("Spawn Points/Blue Spawns/Blue Spawn11"), NodePath("Spawn Points/Blue Spawns/Blue Spawn12")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8eaef")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -2, 23, 34)
+cull_mask = 1
+
+[node name="Spawn Points" type="Node" parent="."]
+
+[node name="Red Spawns" type="Node3D" parent="Spawn Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 1, -1)
+
+[node name="Red Spawn" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="Red Spawn2" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="Red Spawn3" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Red Spawn4" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Red Spawn5" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="Red Spawn6" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="Red Spawn7" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Red Spawn8" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="Red Spawn9" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Red Spawn10" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Red Spawn11" type="Marker3D" parent="Spawn Points/Red Spawns"]
+
+[node name="Red Spawn12" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Blue Spawns" type="Node3D" parent="Spawn Points"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 27, 1, -2)
+
+[node name="Blue Spawn" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="Blue Spawn2" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="Blue Spawn3" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Blue Spawn4" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Blue Spawn5" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="Blue Spawn6" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="Blue Spawn7" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Blue Spawn8" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="Blue Spawn9" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Blue Spawn10" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Blue Spawn11" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+
+[node name="Blue Spawn12" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Scenery" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scenery"]
+transform = Transform3D(1, 0, 0, 0, 0.559193, 0.829038, 0, -0.829038, 0.559193, 0, 11, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Scenery"]
+use_collision = true
+size = Vector3(200, 1, 100)
+material = SubResource("StandardMaterial3D_oukuc")
+
+[node name="Close Centre Building" parent="Scenery" instance=ExtResource("3_oukuc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.5, 2)
+
+[node name="Brown Square" parent="Scenery" instance=ExtResource("4_xge0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0.5, -2)
+
+[node name="Brown Square2" parent="Scenery" instance=ExtResource("4_xge0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, -1)
+
+[node name="Far Centre Building" parent="Scenery" instance=ExtResource("5_rkf6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5, 2)
+
+[node name="L Shape" parent="Scenery" instance=ExtResource("6_dpktr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 14)
+
+[node name="L Shape2" parent="Scenery" instance=ExtResource("6_dpktr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -24, 0.5, -18)
+
+[node name="White I Building" parent="Scenery" instance=ExtResource("7_e2rm5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 0.5, -17)
+
+[node name="White I Building2" parent="Scenery" instance=ExtResource("7_e2rm5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21, 0.5, 15)
+
+[node name="Flank Building" parent="Scenery" instance=ExtResource("8_ya2vu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 12)
+
+[node name="Flank Building2" parent="Scenery" instance=ExtResource("8_ya2vu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 0.5, -16)
+
+[node name="Players" type="Node3D" parent="."]

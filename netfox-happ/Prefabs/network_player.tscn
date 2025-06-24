@@ -1,0 +1,294 @@
+[gd_scene load_steps=18 format=3 uid="uid://qjcihwjykaqu"]
+
+[ext_resource type="Script" uid="uid://bgybm2mnwk72e" path="res://Scripts/Field And Game Mode/Players/network_player_v2.gd" id="1_cvbtf"]
+[ext_resource type="Script" uid="uid://d350u8evihs1u" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="1_hv5qn"]
+[ext_resource type="Script" uid="uid://dour8fehaaugp" path="res://addons/netfox/tick-interpolator.gd" id="2_kqhcw"]
+[ext_resource type="PackedScene" uid="uid://bdrwfud1hah8l" path="res://Prefabs/airsoft_bb.tscn" id="2_pahhd"]
+[ext_resource type="PackedScene" uid="uid://c7oiwtktp4bhh" path="res://Art/Models/Player/First Person/Test OGA Arms.glb" id="2_x05i2"]
+[ext_resource type="Script" uid="uid://wiqch8v5aaym" path="res://Scripts/Field And Game Mode/Players/player_input.gd" id="3_kqhcw"]
+[ext_resource type="PackedScene" uid="uid://c8iihqnpfdcl3" path="res://Art/Models/Player/Third Person/Base/Camo Character.glb" id="5_xkw75"]
+[ext_resource type="Script" uid="uid://d2x2jiejj8mn0" path="res://Scripts/Field And Game Mode/Players/third_person_render_layer_manager.gd" id="6_pahhd"]
+[ext_resource type="PackedScene" uid="uid://cvb4lh8h6hv3j" path="res://Art/Models/Player/Third Person/Accessories/Masks/Unlicensed/BB Mask.glb" id="8_d5o5m"]
+[ext_resource type="PackedScene" uid="uid://ct888780i4bfu" path="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/Rigged SSR4.glb" id="9_bwdhj"]
+[ext_resource type="AudioStream" uid="uid://bardy5mwoibsv" path="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/SSR4 Sound/SSR4 Shoot 1 - 1.wav" id="10_8kujs"]
+[ext_resource type="AudioStream" uid="uid://b333kgecv4bl7" path="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/SSR4 Sound/SSR4 Shoot 2 - 1.wav" id="11_d5o5m"]
+[ext_resource type="AudioStream" uid="uid://douraj2aoyvw4" path="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/SSR4 Sound/SSR4 Shoot 3 - 1.wav" id="12_n5a08"]
+[ext_resource type="AudioStream" uid="uid://cxe8oea20xh33" path="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/SSR4 Sound/SSR4 Shoot 4 - 1.wav" id="13_wybmt"]
+[ext_resource type="AudioStream" uid="uid://djerocjrxjt3p" path="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/SSR4 Sound/SSR4 Shoot 5 - 1.wav" id="14_dwc7f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvbtf"]
+radius = 0.3
+height = 1.6
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cvbtf"]
+properties/0/path = NodePath("..:player_1")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("..:am_hit")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("..:out_and_hurt")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="network_player" type="CharacterBody3D" node_paths=PackedStringArray("input", "cam", "muzzle_device", "third_person_body", "third_person_arms", "arm_bands", "first_person_arms", "audioPlayers", "scoreboard_ui", "game_mode_label", "red_score_label", "blue_score_label", "timer_label")]
+floor_max_angle = 1.22173
+floor_snap_length = 0.3
+script = ExtResource("1_cvbtf")
+max_speed = 3.0
+input = NodePath("Input")
+cam = NodePath("CameraDolly/Camera3D")
+bb = ExtResource("2_pahhd")
+muzzle_device = NodePath("Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/Rigged SSR4/Test Muzzle Marker3D")
+third_person_body = NodePath("Models/Camo Character")
+third_person_arms = NodePath("Models/ArmsDolly/Camo Character2")
+arm_bands = [NodePath("Models/ArmsDolly/Camo Character2/Armature/Skeleton3D/BoneAttachment3D2/CSGCylinder3D"), NodePath("Models/ArmsDolly/Camo Character2/Armature/Skeleton3D/BoneAttachment3D/CSGCylinder3D")]
+first_person_arms = NodePath("Models/ArmsDolly/Test OGA Arms")
+audioPlayers = [NodePath("Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/AudioStreamPlayer3D"), NodePath("Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/AudioStreamPlayer3D2"), NodePath("Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/AudioStreamPlayer3D3"), NodePath("Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/AudioStreamPlayer3D4"), NodePath("Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/AudioStreamPlayer3D5")]
+scoreboard_ui = NodePath("Scoreboard Panel")
+game_mode_label = NodePath("Scoreboard Panel/Header HBoxContainer/Current mode Label")
+red_score_label = NodePath("Scoreboard Panel/VBoxContainer/Red Team HBoxContainer/Red Team Score Label")
+blue_score_label = NodePath("Scoreboard Panel/VBoxContainer/Blue Team HBoxContainer/Blue Team Score Label")
+timer_label = NodePath("Timer Label")
+
+[node name="CameraDolly" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.389, -0.025)
+
+[node name="Camera3D" type="Camera3D" parent="CameraDolly"]
+cull_mask = 3
+
+[node name="Muzzle" type="Marker3D" parent="CameraDolly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153762, -0.102508, -0.390765)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_cvbtf")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+visible = false
+
+[node name="RollbackSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("1_hv5qn")
+root = NodePath("..")
+state_properties = Array[String]([":transform", ":velocity", ":speed", "CameraDolly:rotation", "Models/ArmsDolly:rotation"])
+input_properties = Array[String](["Input:movement", "Input:shoot", "Input:look_vector"])
+metadata/_custom_type_script = "uid://d350u8evihs1u"
+
+[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_kqhcw")
+root = NodePath("..")
+properties = Array[String]([":transform", "CameraDolly:rotation", "Models/ArmsDolly:rotation"])
+metadata/_custom_type_script = "uid://dour8fehaaugp"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../Input")
+replication_config = SubResource("SceneReplicationConfig_cvbtf")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("3_kqhcw")
+
+[node name="Models" type="Node3D" parent="."]
+
+[node name="Camo Character" parent="Models" node_paths=PackedStringArray("models") instance=ExtResource("5_xkw75")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.113)
+script = ExtResource("6_pahhd")
+models = [NodePath("Armature/Skeleton3D/Boots"), NodePath("Armature/Skeleton3D/Head"), NodePath("Armature/Skeleton3D/Legs"), NodePath("Armature/Skeleton3D/Pelvis"), NodePath("Armature/Skeleton3D/Plate Carrier"), NodePath("Armature/Skeleton3D/Torso"), NodePath("Armature/Skeleton3D/BoneAttachment3D/BB Mask/Cube_004")]
+
+[node name="Skeleton3D" parent="Models/Camo Character/Armature" index="0"]
+bones/0/position = Vector3(-0.0210364, 0.640659, 0.0341741)
+bones/0/rotation = Quaternion(-0.0108842, 0.0268475, -0.053008, 0.998174)
+bones/0/scale = Vector3(0.99999, 0.99999, 0.99999)
+bones/1/rotation = Quaternion(0.263685, -0.0506307, 0.118127, 0.956009)
+bones/2/rotation = Quaternion(-0.231358, 0.0320843, -0.0468617, 0.971209)
+bones/3/position = Vector3(0.140342, 0.270106, -0.0327711)
+bones/3/rotation = Quaternion(0.310536, -0.697429, -0.52166, 0.38083)
+bones/3/scale = Vector3(1, 0.999983, 0.999998)
+bones/4/rotation = Quaternion(0.165647, 0.00435765, 0.0669874, 0.983898)
+bones/5/rotation = Quaternion(0.101315, -0.881294, -0.429441, 0.169223)
+bones/6/rotation = Quaternion(-0.0213463, -0.00047148, 0.0220666, 0.999529)
+bones/7/rotation = Quaternion(0.691969, 0.0152766, 0.0159304, 0.72159)
+bones/7/scale = Vector3(0.999996, 1.00002, 1)
+bones/8/scale = Vector3(1, 0.999977, 0.999977)
+bones/9/rotation = Quaternion(0.396391, -0.0135498, -0.0161584, 0.917839)
+bones/10/position = Vector3(-0.140342, 0.270106, -0.0327711)
+bones/10/rotation = Quaternion(0.230649, 0.300449, 0.907185, 0.183158)
+bones/10/scale = Vector3(0.999997, 0.999995, 0.999991)
+bones/11/rotation = Quaternion(0.8144, -0.00212626, -0.329287, 0.477827)
+bones/12/rotation = Quaternion(-0.303982, 0.274368, 0.106161, 0.906116)
+bones/13/rotation = Quaternion(-0.0213466, 0.000471505, -0.0220665, 0.999528)
+bones/14/rotation = Quaternion(0.691969, -0.0152767, -0.0159303, 0.72159)
+bones/14/scale = Vector3(0.999996, 1.00002, 1)
+bones/15/scale = Vector3(1, 0.999977, 0.999977)
+bones/16/rotation = Quaternion(0.396392, 0.0135499, 0.0161585, 0.917839)
+bones/17/position = Vector3(0.116312, 0.210704, -4.64027e-05)
+bones/17/rotation = Quaternion(-0.0671587, 0.366021, 0.924522, -0.0823227)
+bones/17/scale = Vector3(0.999995, 0.999983, 1.00001)
+bones/18/rotation = Quaternion(-0.392858, -8.41409e-06, 0.00117799, 0.919599)
+bones/19/rotation = Quaternion(0.687631, -0.112106, -0.0373589, 0.71638)
+bones/19/scale = Vector3(0.999994, 1.00002, 1)
+bones/20/position = Vector3(-0.116312, 0.210704, -4.64649e-05)
+bones/20/rotation = Quaternion(-0.0833411, -0.0733986, 0.993289, -0.0323043)
+bones/20/scale = Vector3(0.999994, 0.99999, 1)
+bones/21/rotation = Quaternion(-0.266766, 3.92346e-06, -0.00121935, 0.963761)
+bones/22/rotation = Quaternion(0.87158, 0.11399, 0.0840132, 0.469357)
+bones/22/scale = Vector3(0.999993, 1.00002, 1.00001)
+
+[node name="Arms" parent="Models/Camo Character/Armature/Skeleton3D" index="0"]
+visible = false
+
+[node name="Hands" parent="Models/Camo Character/Armature/Skeleton3D" index="2"]
+visible = false
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Models/Camo Character/Armature/Skeleton3D" index="8"]
+transform = Transform3D(0.999524, -0.0267082, -0.0148065, 0.0260117, 0.998621, -0.0453904, 0.0159985, 0.044984, 0.99885, -0.0350813, 1.27554, 0.198902)
+bone_name = "Head_2"
+bone_idx = 2
+
+[node name="BB Mask" parent="Models/Camo Character/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("8_d5o5m")]
+
+[node name="ArmsDolly" type="Node3D" parent="Models"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.237, -0.034)
+
+[node name="Camo Character2" parent="Models/ArmsDolly" node_paths=PackedStringArray("models", "armbands") instance=ExtResource("5_xkw75")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.237, 0.147)
+script = ExtResource("6_pahhd")
+models = [NodePath("Armature/Skeleton3D/Arms"), NodePath("Armature/Skeleton3D/Hands")]
+armbands = [NodePath("Armature/Skeleton3D/BoneAttachment3D2/CSGCylinder3D"), NodePath("Armature/Skeleton3D/BoneAttachment3D/CSGCylinder3D")]
+
+[node name="Boots" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="1"]
+visible = false
+
+[node name="Head" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="3"]
+visible = false
+
+[node name="Legs" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="4"]
+visible = false
+
+[node name="Pelvis" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="5"]
+visible = false
+
+[node name="Plate Carrier" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="6"]
+visible = false
+
+[node name="Torso" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="7"]
+visible = false
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="8"]
+transform = Transform3D(-0.0354019, -0.995273, -0.0904329, 0.999373, -0.0353007, -0.00271846, -0.000486742, -0.0904724, 0.995899, -0.140341, 1.38411, -0.032783)
+bone_name = "Bicep.R"
+bone_idx = 10
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D/BoneAttachment3D2"]
+transform = Transform3D(0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 3.38332e-10, 0.122953, 0.00894943)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D" index="9"]
+transform = Transform3D(-0.0354021, 0.995273, 0.0904329, -0.999373, -0.0353008, -0.00271845, 0.000486762, -0.0904724, 0.995899, 0.140341, 1.38411, -0.032783)
+bone_name = "Bicep.L"
+bone_idx = 3
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Models/ArmsDolly/Camo Character2/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.15, 0, 0, 0, 0.05, 0, 0, 0, 0.15, 0, 0.123, 0.009)
+
+[node name="Test OGA Arms" parent="Models/ArmsDolly" node_paths=PackedStringArray("models") instance=ExtResource("2_x05i2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.05, -1.4, 0.2)
+script = ExtResource("6_pahhd")
+models = [NodePath("caucasian_male_1/Skeleton3D/caucasian_male_1_Body")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D" index="1"]
+transform = Transform3D(0.317586, -0.329087, 0.889292, 0.586287, -0.668946, -0.456923, 0.745256, 0.666493, -0.019508, -5.03785, -3.61474, 2.58657)
+bone_name = "Gun Point.R"
+bone_idx = 28
+
+[node name="Rigged SSR4" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D" instance=ExtResource("9_bwdhj")]
+transform = Transform3D(1.04605, 9.94507, 0.0372262, -0.410923, 0.0806193, -9.99123, -9.93665, 1.0436, 0.417099, 0, 0, 0)
+
+[node name="Test Muzzle Marker3D" type="Marker3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D/Rigged SSR4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02445e-08, 0.124317, -0.607306)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D"]
+stream = ExtResource("10_8kujs")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D"]
+stream = ExtResource("11_d5o5m")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D"]
+stream = ExtResource("12_n5a08")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D"]
+stream = ExtResource("13_wybmt")
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="Models/ArmsDolly/Test OGA Arms/caucasian_male_1/Skeleton3D/BoneAttachment3D"]
+stream = ExtResource("14_dwc7f")
+
+[node name="Scoreboard Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -125.0
+offset_right = 250.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header HBoxContainer" type="HBoxContainer" parent="Scoreboard Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Scoreboard Panel/Header HBoxContainer"]
+layout_mode = 2
+text = "Game Mode: "
+
+[node name="Current mode Label" type="Label" parent="Scoreboard Panel/Header HBoxContainer"]
+layout_mode = 2
+text = "Airsoft"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Red Team HBoxContainer" type="HBoxContainer" parent="Scoreboard Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Red Team Label" type="Label" parent="Scoreboard Panel/VBoxContainer/Red Team HBoxContainer"]
+layout_mode = 2
+text = "Red : "
+
+[node name="Red Team Score Label" type="Label" parent="Scoreboard Panel/VBoxContainer/Red Team HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Blue Team HBoxContainer" type="HBoxContainer" parent="Scoreboard Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Blue Team Label" type="Label" parent="Scoreboard Panel/VBoxContainer/Blue Team HBoxContainer"]
+layout_mode = 2
+text = "Blue : "
+
+[node name="Blue Team Score Label" type="Label" parent="Scoreboard Panel/VBoxContainer/Blue Team HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Timer Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[editable path="Models/Camo Character"]
+[editable path="Models/Camo Character/Armature/Skeleton3D/BoneAttachment3D/BB Mask"]
+[editable path="Models/ArmsDolly/Camo Character2"]
+[editable path="Models/ArmsDolly/Test OGA Arms"]

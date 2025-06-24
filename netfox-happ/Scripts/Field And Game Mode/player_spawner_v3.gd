@@ -1,0 +1,114 @@
+extends MultiplayerSpawner
+class_name Player_Spawner_v3
+
+@export var player_scene: PackedScene
+
+var spawn_host_avatar: bool = true
+@export var avatars: Dictionary = {}
+
+#region deprecated
+func _ready():
+	return
+	NetworkEvents.on_client_start.connect(_handle_connected)
+	NetworkEvents.on_server_start.connect(_handle_host)
+	NetworkEvents.on_peer_join.connect(_handle_new_peer)
+	NetworkEvents.on_peer_leave.connect(_handle_leave)
+	NetworkEvents.on_client_stop.connect(_handle_stop)
+	NetworkEvents.on_server_stop.connect(_handle_stop)
+
+func _handle_connected(id: int):
+	#if joining_screen:
+		#joining_screen.visible = true
+	print (" Client start : ", str(id))
+	# Spawn an avatar for us
+	_spawn(id)
+
+func _handle_host():
+	print (" handle host  ")
+	if spawn_host_avatar:
+		# Spawn own avatar on host machine
+		_spawn(1)
+
+func _handle_new_peer(id: int):
+	print("Handle new peer", str(id))
+	# Spawn an avatar for new player
+	var avatar = _spawn(id)
+	
+	# Hide avatar until player syncs time
+	avatar.visible = true
+	while not NetworkTime.is_client_synced(id):
+		await NetworkTime.after_client_sync
+	avatar.visible = true
+
+func _handle_leave(id: int):
+	print (" Handle Leave : ", str(id))
+	if not avatars.has(id):
+		return
+	
+	var avatar = avatars[id] as Node
+	avatar.queue_free()
+	avatars.erase(id)
+
+func _handle_stop():
+	print (" handle stop ")
+	# Remove all avatars on game end
+	
+	#while avatars.size() > 0: #Dis shit brokey... fix
+	for avatar in avatars.values():
+		print("Avatar : ", str ( avatar )  )
+		if avatar != null:
+			avatar.queue_free()
+	for child in $"../../Players".get_children():
+		child.queue_free()
+	avatars.clear()
+#endregion
+
+func _spawn(id: int) -> network_player_v2:
+	var avatar = player_scene.instantiate() as network_player_v2
+	
+	avatars.get_or_add(id)
+	if avatars.has(id):
+		print("HAS THIS SHIT")
+	else:
+		print("NO IT DUKIN DON'T")
+	avatars[id] = avatar
+	print("What the fuckin falueee??? ", str(avatars[id]) )
+	avatar.name += " #%d" % id
+	avatar.player_id = id
+	#spawn_root.add_child(avatar)
+	
+	print (" MP SPAWN PLAYER!!! ")
+	$"../../Players".add_child(avatar)
+	#add_spawnable_scene(spawn_path) # new for multiplayer spawner
+	
+	# Avatar is always owned by server
+	avatar.set_multiplayer_authority(1)
+
+	print( "Spawned avatar %s at %s" % [ avatar.name, multiplayer.get_unique_id() ] )
+	
+	# Avatar's input object is owned by player
+	var input = avatar.find_child("Input")
+	if input != null:
+		input.set_multiplayer_authority(id)
+		print("Set input(%s) ownership to %s" % [input.name, id])
+	
+	#if id == multiplayer.get_unique_id():
+		# If avatar is own, assign it as camera follow target and emit event
+		#camera.target = avatar
+		#GameEvents.on_own_brawler_spawn.emit(avatar)
+		
+		# Submit name
+		#var player_name = name_input.text
+		#print("Submitting player name " + player_name)
+		#_submit_name.rpc(player_name)
+	
+	return avatar
+
+
+
+@rpc("any_peer", "reliable", "call_local")
+func _submit_name(player_name: String):
+	var pid = multiplayer.get_remote_sender_id()
+	var avatar = avatars[pid]
+	avatar.player_name = player_name
+	print("Setting player name for #%s to %s" % [pid, player_name])

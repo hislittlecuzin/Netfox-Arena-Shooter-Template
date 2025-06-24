@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxvk8kp0rgx2h"]
+
+[ext_resource type="Script" uid="uid://dnimwet8uxqfw" path="res://Scripts/Menus/pre-game_lobby.gd" id="1_warsa"]
+[ext_resource type="PackedScene" uid="uid://mqaj15h8ryjl" path="res://Scenes/Menus/Prefabs/select_load_button.tscn" id="2_orqem"]
+[ext_resource type="PackedScene" uid="uid://cu7x7asw2f0l5" path="res://Scenes/Menus/Prefabs/lobby_username.tscn" id="3_yowc1"]
+[ext_resource type="PackedScene" uid="uid://dv5ogqy3h7di7" path="res://Scenes/Menus/Prefabs/Game Mode Select Button.tscn" id="4_sgjv0"]
+
+[node name="Steam pre-game_Lobby" type="Control" node_paths=PackedStringArray("mapSelectedLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_warsa")
+default_map = "uid://s6bk6pdcaqu3"
+retail_maps = Array[String](["uid://s6bk6pdcaqu3", "uid://dxj0bqvodbdvx", "uid://cmfrtg80fr1nk"])
+whatToLoadTemplate = ExtResource("2_orqem")
+mapSelectedLabel = NodePath("Map Select/HBoxContainer/Map Selected Label")
+lobbyUsernameTemplate = ExtResource("3_yowc1")
+gameModes = ExtResource("4_sgjv0")
+
+[node name="Leave Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 34.0
+offset_right = 180.0
+offset_bottom = 65.0
+text = "Leave Lobby"
+
+[node name="Player Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 126.0
+offset_right = 875.0
+offset_bottom = 395.0
+
+[node name="Label" type="Label" parent="Player Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Players: "
+
+[node name="Player List VBoxContainer" type="VBoxContainer" parent="Player Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 27.0
+offset_right = 438.0
+offset_bottom = 258.0
+
+[node name="Start Game Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 981.0
+offset_top = 534.0
+offset_right = 1077.0
+offset_bottom = 565.0
+text = "Start Game"
+
+[node name="Map Select" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 121.0
+offset_right = 242.0
+offset_bottom = 386.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map Select"]
+layout_mode = 2
+
+[node name="Map Label" type="Label" parent="Map Select/HBoxContainer"]
+layout_mode = 2
+text = "Map:"
+
+[node name="Map Selected Label" type="Label" parent="Map Select/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Godot Playground"
+autowrap_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Map Select"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Map List" type="VBoxContainer" parent="Map Select/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Game Mode" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 121.0
+offset_right = 1092.0
+offset_bottom = 386.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game Mode"]
+layout_mode = 2
+
+[node name="Gamemode Label" type="Label" parent="Game Mode/HBoxContainer"]
+layout_mode = 2
+text = "Gamemode:"
+
+[node name="Game Mode Selected" type="Label" parent="Game Mode/HBoxContainer"]
+layout_mode = 2
+text = "Airsoft"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Game Mode"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gamemode List" type="VBoxContainer" parent="Game Mode/ScrollContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button Airsoft" type="Button" parent="Game Mode/ScrollContainer/Gamemode List"]
+layout_mode = 2
+text = "Airsoft"
+
+[node name="Button Capture the Flag" type="Button" parent="Game Mode/ScrollContainer/Gamemode List"]
+layout_mode = 2
+text = "Capture the Flag"
+
+[node name="Button Shamwow" type="Button" parent="Game Mode/ScrollContainer/Gamemode List"]
+layout_mode = 2
+text = "Shamwow"
+
+[node name="Button Conquest" type="Button" parent="Game Mode/ScrollContainer/Gamemode List"]
+layout_mode = 2
+text = "Conquest"
+
+[node name="Button Push" type="Button" parent="Game Mode/ScrollContainer/Gamemode List"]
+layout_mode = 2
+text = "Push"
+
+[connection signal="button_down" from="Start Game Button" to="." method="StartGame"]
+[connection signal="button_down" from="Game Mode/ScrollContainer/Gamemode List/Button Airsoft" to="." method="set_game_mode_airsoft"]
+[connection signal="button_down" from="Game Mode/ScrollContainer/Gamemode List/Button Capture the Flag" to="." method="set_game_mode_capture_the_flag"]
+[connection signal="button_down" from="Game Mode/ScrollContainer/Gamemode List/Button Shamwow" to="." method="set_game_mode_shamwow"]
+[connection signal="button_down" from="Game Mode/ScrollContainer/Gamemode List/Button Conquest" to="." method="set_game_mode_conquest"]
+[connection signal="button_down" from="Game Mode/ScrollContainer/Gamemode List/Button Push" to="." method="set_game_mode_push"]

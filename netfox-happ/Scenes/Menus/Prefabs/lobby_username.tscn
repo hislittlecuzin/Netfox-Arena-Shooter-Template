@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu7x7asw2f0l5"]
+
+[ext_resource type="Script" uid="uid://bftbicyb65tj3" path="res://Scenes/Menus/Prefabs/lobby_username.gd" id="1_3uj1v"]
+
+[node name="Lobby Username" type="HBoxContainer"]
+custom_minimum_size = Vector2(420, 35)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -732.0
+offset_bottom = -613.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_3uj1v")
+
+[node name="username" type="Label" parent="."]
+layout_mode = 2
+text = "foobar"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "| Team: "
+
+[node name="teamSelect" type="OptionButton" parent="."]
+layout_mode = 2
+disabled = true
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "Red"
+popup/item_0/id = 0
+popup/item_1/text = "Blue"
+popup/item_1/id = 1
+
+[node name="Splitscreen CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+disabled = true
+text = "SplitScreen"
+
+[connection signal="item_selected" from="teamSelect" to="." method="team_select_item_selected"]
+[connection signal="toggled" from="Splitscreen CheckBox" to="." method="splitscreen_check_box_toggled"]

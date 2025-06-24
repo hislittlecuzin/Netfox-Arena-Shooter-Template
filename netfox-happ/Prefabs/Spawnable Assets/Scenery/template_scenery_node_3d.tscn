@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c16k8gtcl6brh"]
+
+[ext_resource type="Script" uid="uid://cgfqvytf8ia2w" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/SceneryIdentifier.gd" id="1_gojpi"]
+
+[node name="Template Scenery Node3D" type="Node3D"]
+script = ExtResource("1_gojpi")

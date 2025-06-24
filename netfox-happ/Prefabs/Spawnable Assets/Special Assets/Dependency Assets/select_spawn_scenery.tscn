@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://8j2qmq03jn2x"]
+
+[ext_resource type="Script" uid="uid://d3i01wdcto27h" path="res://Scenes/Map Editor/Button Stuff/select_spawn_scenery.gd" id="1_32o6y"]
+
+[node name="SelectSpawnScenery" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1033.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Barfoo Prop"
+script = ExtResource("1_32o6y")
+
+[connection signal="button_down" from="." to="." method="clicked_button"]

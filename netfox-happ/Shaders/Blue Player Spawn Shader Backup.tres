@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dbmxq7etok42e"]
+
+[ext_resource type="Shader" uid="uid://cgykxepafavhe" path="res://Shaders/SciFi Hologram.gdshader" id="1_a38iq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_a38iq")
+shader_parameter/line_color = Color(0, 0, 1, 1)
+shader_parameter/line_width = 1.0
+shader_parameter/line_blur = 0.0
+shader_parameter/line_speed = 4.75e-08
+shader_parameter/straight_lines = true
+shader_parameter/interrupt_width = 1.0
+shader_parameter/interrupt_blur = 0.0
+shader_parameter/interrupt_speed = 4.75e-08
+shader_parameter/glow_color = Color(0.5, 0.75, 1, 1)
+shader_parameter/glow_itensity = 0.0
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 1.0

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b35aoj251l6qy"]
+
+[ext_resource type="Script" uid="uid://cgfqvytf8ia2w" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/SceneryIdentifier.gd" id="1_6dl10"]
+[ext_resource type="Shader" uid="uid://cgykxepafavhe" path="res://Shaders/SciFi Hologram.gdshader" id="2_x5co6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8joc"]
+render_priority = 0
+shader = ExtResource("2_x5co6")
+shader_parameter/line_color = Color(0, 1, 1, 1)
+shader_parameter/line_width = 1.0
+shader_parameter/line_blur = 0.0
+shader_parameter/line_speed = 4.75e-08
+shader_parameter/straight_lines = true
+shader_parameter/interrupt_width = 0.5
+shader_parameter/interrupt_blur = 0.25
+shader_parameter/interrupt_speed = 4.75e-08
+shader_parameter/glow_color = Color(0.5, 0.75, 1, 1)
+shader_parameter/glow_itensity = 4.5
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlg15"]
+
+[node name="Push Blocker Zone Node3D" type="StaticBody3D"]
+script = ExtResource("1_6dl10")
+scenery_type = 5
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("ShaderMaterial_c8joc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hlg15")

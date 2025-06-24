@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdrwfud1hah8l"]
+
+[ext_resource type="Script" uid="uid://bswq33q1ih0ch" path="res://Scripts/Field And Game Mode/Players/airsoft_bb.gd" id="1_6mriq"]
+[ext_resource type="Script" uid="uid://dour8fehaaugp" path="res://addons/netfox/tick-interpolator.gd" id="2_adqwg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xq3k0"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6mriq"]
+radius = 0.1
+
+[node name="AirsoftBB" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_6mriq")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xq3k0")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Area3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_6mriq")
+
+[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_adqwg")
+root = NodePath("..")
+properties = Array[String]([":transform"])
+metadata/_custom_type_script = "uid://dour8fehaaugp"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBBCollide"]
+[connection signal="timeout" from="Timer" to="." method="_on_despawn_timer_timeout"]

@@ -1,0 +1,205 @@
+[gd_scene load_steps=7 format=3 uid="uid://s6bk6pdcaqu3"]
+
+[ext_resource type="Script" uid="uid://bdbdlme8ow6yo" path="res://Scripts/Field And Game Mode/FieldManager.gd" id="1_8gq8c"]
+[ext_resource type="Texture2D" uid="uid://dxrde7t1n0qk8" path="res://icon.svg" id="1_kfg2r"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6cjgi"]
+properties/0/path = NodePath(".:red_score")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:blue_score")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:game_timer")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g04j"]
+albedo_texture = ExtResource("1_kfg2r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iv7c"]
+albedo_texture = ExtResource("1_kfg2r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lk7cu"]
+albedo_texture = ExtResource("1_kfg2r")
+
+[node name="Field_Manager" type="Node3D" node_paths=PackedStringArray("red_spawns", "blue_spawns")]
+script = ExtResource("1_8gq8c")
+red_spawns = [NodePath("Spawn Points/Red Spawns/Red Spawn Point 1"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 2"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 3"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 4"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 5"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 6"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 7"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 8"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 9"), NodePath("Spawn Points/Red Spawns/Red Spawn Point 10")]
+blue_spawns = [NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 1"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 2"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 3"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 4"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 5"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 6"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 7"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 8"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 9"), NodePath("Spawn Points/Blue Spawns/Blue Spawn Point 10")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6cjgi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.776024, 0.630703, 0, -0.630703, 0.776024, -9.53674e-07, 11.762, 18.9609)
+cull_mask = 1
+
+[node name="Scenery" type="Node3D" parent="."]
+
+[node name="Outline" type="Node3D" parent="Scenery"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scenery/Outline"]
+transform = Transform3D(1, 0, 0, 0, 0.559193, 0.829038, 0, -0.829038, 0.559193, 0, 11, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Scenery/Outline"]
+material_override = SubResource("StandardMaterial3D_1g04j")
+use_collision = true
+size = Vector3(50, 1, 40)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Scenery/Outline"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -20)
+material_override = SubResource("StandardMaterial3D_1iv7c")
+use_collision = true
+size = Vector3(50, 10, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Scenery/Outline"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 20)
+material_override = SubResource("StandardMaterial3D_1iv7c")
+use_collision = true
+size = Vector3(50, 10, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Scenery/Outline"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, 0)
+material_override = SubResource("StandardMaterial3D_lk7cu")
+use_collision = true
+size = Vector3(1, 10, 40)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Scenery/Outline"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6238, 5, 0)
+material_override = SubResource("StandardMaterial3D_lk7cu")
+use_collision = true
+size = Vector3(1, 10, 40)
+
+[node name="Bunkers" type="Node3D" parent="Scenery"]
+
+[node name="Bunker Can Rectangle" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5569, 1.37163, -10.7662)
+use_collision = true
+
+[node name="Bunker Can Rectangle2" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5569, 1.37163, 7.00204)
+use_collision = true
+
+[node name="Bunker Can Rectangle3" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5569, 1.37163, -1.66813)
+use_collision = true
+
+[node name="Bunker Can Rectangle4" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5928, 1.37163, -1.66813)
+use_collision = true
+
+[node name="Bunker Can Rectangle5" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5928, 1.37163, -11.6253)
+use_collision = true
+
+[node name="Bunker Can Rectangle6" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5928, 1.37163, 7.74397)
+use_collision = true
+
+[node name="Bunker Can Rectangle7" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99512, 1.37163, -0.732375)
+use_collision = true
+
+[node name="Bunker Can Rectangle12" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99512, 1.37163, 11.2676)
+use_collision = true
+
+[node name="Bunker Can Rectangle13" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99512, 1.37163, -14.7324)
+use_collision = true
+
+[node name="Bunker Can Rectangle8" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5928, 1.37163, -7.6253)
+use_collision = true
+
+[node name="Bunker Can Rectangle9" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5928, 1.37163, 3.74397)
+use_collision = true
+
+[node name="Bunker Can Rectangle10" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5569, 1.37163, -6.7662)
+use_collision = true
+
+[node name="Bunker Can Rectangle11" type="CSGCylinder3D" parent="Scenery/Bunkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5569, 1.37163, 3.00204)
+use_collision = true
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="Spawn Points" type="Node3D" parent="."]
+
+[node name="Red Spawns" type="Node3D" parent="Spawn Points"]
+
+[node name="Red Spawn Point 1" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0.6, 0)
+
+[node name="Red Spawn Point 2" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0.6, 3)
+
+[node name="Red Spawn Point 3" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0.6, -3)
+
+[node name="Red Spawn Point 4" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0.6, 6)
+
+[node name="Red Spawn Point 5" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0.6, -6)
+
+[node name="Red Spawn Point 6" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0.6, 1)
+
+[node name="Red Spawn Point 7" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0.6, 4)
+
+[node name="Red Spawn Point 8" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0.6, -2)
+
+[node name="Red Spawn Point 9" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0.6, 7)
+
+[node name="Red Spawn Point 10" type="Marker3D" parent="Spawn Points/Red Spawns"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0.6, -5)
+
+[node name="Blue Spawns" type="Node3D" parent="Spawn Points"]
+
+[node name="Blue Spawn Point 1" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0.6, 0)
+
+[node name="Blue Spawn Point 2" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0.6, 3)
+
+[node name="Blue Spawn Point 3" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0.6, -3)
+
+[node name="Blue Spawn Point 4" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0.6, 6)
+
+[node name="Blue Spawn Point 5" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0.6, -6)
+
+[node name="Blue Spawn Point 6" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0.6, -1)
+
+[node name="Blue Spawn Point 7" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0.6, 2)
+
+[node name="Blue Spawn Point 8" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0.6, -4)
+
+[node name="Blue Spawn Point 9" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0.6, 5)
+
+[node name="Blue Spawn Point 10" type="Marker3D" parent="Spawn Points/Blue Spawns"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 0.6, -7)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-4.76454e-07, 0, 10.9, 0, 10.9, 0, -10.9, 0, -4.76454e-07, -23.8269, 8.30408, 0)
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_kfg2r")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.80825e-07, 0, 11, 0, 11, 0, -11, 0, -4.80825e-07, 24.1731, 7.30408, 0)
+modulate = Color(0, 0, 1, 1)
+texture = ExtResource("1_kfg2r")

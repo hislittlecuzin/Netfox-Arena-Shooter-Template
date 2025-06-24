@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dibey6lqxsg76"]
+
+[ext_resource type="PackedScene" uid="uid://dbsqfk0r15xfe" path="res://Scenes/Menus/main_menu.tscn" id="1_v6tch"]
+[ext_resource type="PackedScene" uid="uid://xdvvt7k5b0cp" path="res://Scenes/Menus/scoreboard.tscn" id="1_vjsiq"]
+[ext_resource type="PackedScene" uid="uid://bu3nimbew4jr8" path="res://Scenes/Menus/server_browser.tscn" id="2_pfvqn"]
+[ext_resource type="PackedScene" uid="uid://dssckyorys5xg" path="res://Prefabs/split_screen_cameras.tscn" id="3_baogf"]
+[ext_resource type="PackedScene" uid="uid://dxvk8kp0rgx2h" path="res://Scenes/Menus/pre-game_lobby.tscn" id="4_vjsiq"]
+[ext_resource type="PackedScene" uid="uid://qjcihwjykaqu" path="res://Prefabs/network_player.tscn" id="5_pfvqn"]
+[ext_resource type="Script" uid="uid://chctgipuukj83" path="res://Scripts/Field And Game Mode/player_spawner_v3.gd" id="8_1o07v"]
+
+[node name="PrimaryScene" type="Node"]
+
+[node name="SplitScreenCameras" parent="." instance=ExtResource("3_baogf")]
+visible = false
+
+[node name="Main Menu" parent="." node_paths=PackedStringArray("server_browser", "pre_game_lobby", "mpSpawner") instance=ExtResource("1_v6tch")]
+server_browser = NodePath("../ServerBrowser")
+pre_game_lobby = NodePath("../Steam pre-game_Lobby")
+mpSpawner = NodePath("../Network/MultiplayerSpawner")
+
+[node name="ServerBrowser" parent="." node_paths=PackedStringArray("mainMenu") instance=ExtResource("2_pfvqn")]
+visible = false
+mainMenu = NodePath("../Main Menu")
+
+[node name="Steam pre-game_Lobby" parent="." node_paths=PackedStringArray("multiplayer_spawner", "scoreboard", "split_screen_manager") instance=ExtResource("4_vjsiq")]
+visible = false
+multiplayer_spawner = NodePath("../Network/MultiplayerSpawner")
+scoreboard = NodePath("../Scoreboard")
+split_screen_manager = NodePath("../SplitScreenCameras")
+
+[node name="Scoreboard" parent="." instance=ExtResource("1_vjsiq")]
+visible = false
+
+[node name="Network" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Network"]
+spawn_path = NodePath("../../Players")
+script = ExtResource("8_1o07v")
+player_scene = ExtResource("5_pfvqn")
+
+[node name="Players" type="Node" parent="."]
+
+[node name="SP" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)

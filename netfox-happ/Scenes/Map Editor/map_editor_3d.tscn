@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhqjdjvtgruaf"]
+
+[ext_resource type="PackedScene" uid="uid://ib3hgfch3n0b" path="res://Scenes/Map Editor/map_3d_editor_controller.tscn" id="1_21wor"]
+[ext_resource type="PackedScene" uid="uid://dosq3mxgjrj7p" path="res://Scenes/Map Editor/Map Editor UI.tscn" id="1_qo287"]
+[ext_resource type="Texture2D" uid="uid://dxrde7t1n0qk8" path="res://icon.svg" id="2_klvbw"]
+[ext_resource type="PackedScene" uid="uid://chnqplpuhfgwt" path="res://Prefabs/Spawnable Assets/Special Assets/Player Spawn.tscn" id="4_mcr1m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21wor"]
+albedo_texture = ExtResource("2_klvbw")
+uv1_scale = Vector3(1000, 1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcr1m"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mcr1m"]
+
+[node name="Map Editor 3D" type="Node3D"]
+
+[node name="Map Editor UI" parent="." node_paths=PackedStringArray("navigation_region") instance=ExtResource("1_qo287")]
+navigation_region = NodePath("../NavigationRegion3D")
+
+[node name="Map3DEditorController" parent="." node_paths=PackedStringArray("area_editor") instance=ExtResource("1_21wor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+area_editor = NodePath("../Map Editor UI")
+
+[node name="FloorCSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(1000, 1, 1000)
+material = SubResource("StandardMaterial3D_21wor")
+
+[node name="Origin Marker" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49, 0)
+material = SubResource("StandardMaterial3D_mcr1m")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_mcr1m")
+
+[node name="Spawn Point" parent="NavigationRegion3D" instance=ExtResource("4_mcr1m")]

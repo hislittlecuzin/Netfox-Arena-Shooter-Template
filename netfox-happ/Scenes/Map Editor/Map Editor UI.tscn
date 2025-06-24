@@ -1,0 +1,813 @@
+[gd_scene load_steps=12 format=3 uid="uid://dosq3mxgjrj7p"]
+
+[ext_resource type="Script" uid="uid://dhweu4qi72dki" path="res://Scenes/Map Editor/map_editor_ui.gd" id="1_l3bx7"]
+[ext_resource type="PackedScene" uid="uid://chnqplpuhfgwt" path="res://Prefabs/Spawnable Assets/Special Assets/Player Spawn.tscn" id="2_0baog"]
+[ext_resource type="PackedScene" uid="uid://bmx2akrlpsrmu" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/select_load_button.tscn" id="2_vnltc"]
+[ext_resource type="PackedScene" uid="uid://8j2qmq03jn2x" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/select_spawn_scenery.tscn" id="3_u22j7"]
+[ext_resource type="PackedScene" uid="uid://b8mg1q2uo4e8c" path="res://Prefabs/Spawnable Assets/Scenery/Buildings/Zulu 24 Brown Square.tscn" id="4_7slcg"]
+[ext_resource type="PackedScene" uid="uid://dkjs06urkqcyt" path="res://Prefabs/Spawnable Assets/Special Assets/flag_special_indicator.tscn" id="4_iedr4"]
+[ext_resource type="PackedScene" uid="uid://ckoumpjtw7f3n" path="res://Prefabs/Spawnable Assets/Special Assets/control_zone_node_3d.tscn" id="4_sxkvt"]
+[ext_resource type="PackedScene" uid="uid://b35aoj251l6qy" path="res://Prefabs/Spawnable Assets/Special Assets/push_blocker_zone_node_3d.tscn" id="5_iedr4"]
+[ext_resource type="PackedScene" uid="uid://besa80pqgqp3u" path="res://Prefabs/Spawnable Assets/Scenery/makeshift buildings/Basic Shipping Container.tscn" id="5_ypm8w"]
+[ext_resource type="PackedScene" uid="uid://da5namxcsn4sk" path="res://Prefabs/Spawnable Assets/Special Assets/Push Player Spawn.tscn" id="6_4dflg"]
+[ext_resource type="Texture2D" uid="uid://b54njbnbn1w8h" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/circle32.png" id="7_x7k5k"]
+
+[node name="Map Editor UI" type="Control" node_paths=PackedStringArray("loadAreaMenu", "map_options_to_load_vbox", "spawnAssetsMenu", "asset_options_to_load_vbox", "helpPanel", "asset_spawn_panel", "asset_to_spawn_label", "list_of_spawnable_assets_v_box", "field_load_panel", "field_to_load_lable", "list_of_loadable_fields_v_box", "save_panel_line_edit", "special_object_spawnpoint_optionButton", "special_object_controlzone_optionButton", "special_object_flagoption_optionButton", "special_object_pushblocker_optionButton", "special_object_pushspawn_optionButton", "inspectorAssetNameField", "inspectorPositionControl", "inspector_X_positionControl", "inspector_Y_positionControl", "inspector_Z_positionControl", "inspectorRotationControl", "inspector_X_rotationControl", "inspector_Y_rotationControl", "inspector_Z_rotationControl", "inspectorScaleControl", "inspector_X_scaleControl", "inspector_Y_scaleControl", "inspector_Z_scaleControl", "inspectorSpawnPointControl", "inspectorSpawnPointOption", "inspectorControlZoneControl", "inspectorControlZoneOption", "inspectorFlagControl", "inspectorFlagOption", "inspectorConquestCapturePointControl", "inspectorPushZoneBlockerControl", "inspectorPushZoneBlockerOption", "inspectorPushSpawnControl", "inspectorPushSpawnOption")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3bx7")
+loadAreaMenu = NodePath("Load Field Panel")
+stage_map_to_load_button_template = ExtResource("2_vnltc")
+map_options_to_load_vbox = NodePath("Load Field Panel/ScrollContainer/Load Area VBoxContainer")
+spawnAssetsMenu = NodePath("Asset Spawn Panel")
+stage_asset_to_load_button_template = ExtResource("3_u22j7")
+asset_options_to_load_vbox = NodePath("Asset Spawn Panel/ScrollContainer/Asset Spawn List VBoxContainer")
+helpPanel = NodePath("Help Panel")
+assetOptions = Array[PackedScene]([ExtResource("4_7slcg"), ExtResource("5_ypm8w")])
+asset_spawn_panel = NodePath("Asset Spawn Panel")
+asset_to_spawn_label = NodePath("Asset Spawn Panel/Field To Load Label")
+list_of_spawnable_assets_v_box = NodePath("Asset Spawn Panel/ScrollContainer/Asset Spawn List VBoxContainer")
+field_load_panel = NodePath("Load Field Panel")
+field_to_load_lable = NodePath("Load Field Panel/Field To Load Label")
+list_of_loadable_fields_v_box = NodePath("Load Field Panel/ScrollContainer/Load Area VBoxContainer")
+save_panel_line_edit = NodePath("Save Panel/Save Panel LineEdit")
+spawnPoint_specialObject = ExtResource("2_0baog")
+special_object_spawnpoint_optionButton = NodePath("Special Objects Panel/Spawn Point Button/Team OptionButton")
+control_zone = ExtResource("4_sxkvt")
+special_object_controlzone_optionButton = NodePath("Special Objects Panel/Control Zone Button/OptionButton")
+flag_items = ExtResource("4_iedr4")
+special_object_flagoption_optionButton = NodePath("Special Objects Panel/Flag Button/Flag OptionButton")
+push_blocker = ExtResource("5_iedr4")
+special_object_pushblocker_optionButton = NodePath("Special Objects Panel/Push Zone Blocker Button/Push Zone Blocker OptionButton")
+push_spawn_point = ExtResource("6_4dflg")
+special_object_pushspawn_optionButton = NodePath("Special Objects Panel/Push Spawn Button/Push Spawn OptionButton")
+inspectorAssetNameField = NodePath("Inspector Panel/Name LineEdit")
+inspectorPositionControl = NodePath("Inspector Panel/Position Control")
+inspector_X_positionControl = NodePath("Inspector Panel/Position Control/xpos SpinBox")
+inspector_Y_positionControl = NodePath("Inspector Panel/Position Control/ypos SpinBox")
+inspector_Z_positionControl = NodePath("Inspector Panel/Position Control/zpos SpinBox")
+inspectorRotationControl = NodePath("Inspector Panel/Rotation Control")
+inspector_X_rotationControl = NodePath("Inspector Panel/Rotation Control/xrot SpinBox")
+inspector_Y_rotationControl = NodePath("Inspector Panel/Rotation Control/yrot SpinBox")
+inspector_Z_rotationControl = NodePath("Inspector Panel/Rotation Control/zrot SpinBox")
+inspectorScaleControl = NodePath("Inspector Panel/Scale Control")
+inspector_X_scaleControl = NodePath("Inspector Panel/Scale Control/xscale SpinBox")
+inspector_Y_scaleControl = NodePath("Inspector Panel/Scale Control/yscale SpinBox")
+inspector_Z_scaleControl = NodePath("Inspector Panel/Scale Control/zscale SpinBox")
+inspectorSpawnPointControl = NodePath("Inspector Panel/SpawnPoint Control")
+inspectorSpawnPointOption = NodePath("Inspector Panel/SpawnPoint Control/Inspector Spawnpoint OptionButton")
+inspectorControlZoneControl = NodePath("Inspector Panel/ControlZone Control 4")
+inspectorControlZoneOption = NodePath("Inspector Panel/ControlZone Control 4/Inspector Control Zone OptionButton")
+inspectorFlagControl = NodePath("Inspector Panel/Flag Control")
+inspectorFlagOption = NodePath("Inspector Panel/Flag Control/Inspector Flag OptionButton")
+inspectorConquestCapturePointControl = NodePath("Inspector Panel/Conquest Capture Point Control")
+inspectorPushZoneBlockerControl = NodePath("Inspector Panel/Push Zone Blocker Control 4")
+inspectorPushZoneBlockerOption = NodePath("Inspector Panel/Push Zone Blocker Control 4/Push Zone OptionButton")
+inspectorPushSpawnControl = NodePath("Inspector Panel/Push Spawn Control")
+inspectorPushSpawnOption = NodePath("Inspector Panel/Push Spawn Control/Push Spawn OptionButton")
+
+[node name="Main Menu Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 96.0
+offset_bottom = 33.0
+text = "Main Menu"
+
+[node name="New Area Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_right = 187.0
+offset_bottom = 31.0
+text = "New Area"
+
+[node name="Show Help Panel Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 335.0
+offset_bottom = 31.0
+text = "Show Help Panel"
+
+[node name="Special Objects Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 37.0
+offset_right = 939.0
+offset_bottom = 143.0
+
+[node name="Label" type="Label" parent="Special Objects Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Special Objects"
+
+[node name="Spawn Point Button" type="Button" parent="Special Objects Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 26.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "Spawn Point"
+
+[node name="Team OptionButton" type="OptionButton" parent="Special Objects Panel/Spawn Point Button"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 36.0
+offset_right = 81.0
+offset_bottom = 67.0
+selected = 0
+item_count = 2
+popup/item_0/text = "Red"
+popup/item_0/id = 0
+popup/item_1/text = "Blue"
+popup/item_1/id = 1
+
+[node name="Control Zone Button" type="Button" parent="Special Objects Panel"]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 27.0
+offset_right = 233.0
+offset_bottom = 58.0
+text = "Control Zone"
+
+[node name="OptionButton" type="OptionButton" parent="Special Objects Panel/Control Zone Button"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 37.0
+offset_right = 118.0
+offset_bottom = 68.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Shamwow"
+popup/item_0/id = 0
+popup/item_1/text = "A"
+popup/item_1/id = 1
+popup/item_2/text = "B"
+popup/item_2/id = 2
+popup/item_3/text = "C"
+popup/item_3/id = 3
+
+[node name="Flag Button" type="Button" parent="Special Objects Panel"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 23.0
+offset_right = 335.0
+offset_bottom = 54.0
+text = "Flag"
+
+[node name="Flag OptionButton" type="OptionButton" parent="Special Objects Panel/Flag Button"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = 42.0
+offset_right = 112.0
+offset_bottom = 73.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Red Flag"
+popup/item_0/id = 0
+popup/item_1/text = "Red Win Zone"
+popup/item_1/id = 1
+popup/item_2/text = "Blue Flag"
+popup/item_2/id = 2
+popup/item_3/text = "Blue Win Zone"
+popup/item_3/id = 3
+
+[node name="Conquest Flag Button" type="Button" parent="Special Objects Panel"]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 23.0
+offset_right = 526.0
+offset_bottom = 77.0
+text = "Conquest
+Capture Point"
+
+[node name="Push Zone Blocker Button" type="Button" parent="Special Objects Panel"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 9.0
+offset_right = 618.0
+offset_bottom = 63.0
+text = "Push Zone
+Blocker"
+
+[node name="Push Zone Blocker OptionButton" type="OptionButton" parent="Special Objects Panel/Push Zone Blocker Button"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 59.0
+offset_right = 66.0
+offset_bottom = 90.0
+selected = 0
+item_count = 4
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+
+[node name="Push Spawn Button" type="Button" parent="Special Objects Panel"]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 30.0
+offset_right = 729.0
+offset_bottom = 61.0
+text = "Push Spawn"
+
+[node name="Push Spawn OptionButton" type="OptionButton" parent="Special Objects Panel/Push Spawn Button"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 37.0
+offset_right = 115.0
+offset_bottom = 68.0
+selected = 0
+item_count = 8
+popup/item_0/text = "Red Zone 0"
+popup/item_0/id = 0
+popup/item_1/text = "Blue Zone 0"
+popup/item_1/id = 1
+popup/item_2/text = "Red Zone 1"
+popup/item_2/id = 2
+popup/item_3/text = "Blue Zone 1"
+popup/item_3/id = 3
+popup/item_4/text = "Red Zone 2"
+popup/item_4/id = 4
+popup/item_5/text = "Blue Zone 2"
+popup/item_5/id = 5
+popup/item_6/text = "Red Zone 3"
+popup/item_6/id = 6
+popup/item_7/text = "Blue Zone 3"
+popup/item_7/id = 7
+
+[node name="Inspector Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 953.0
+offset_top = 42.0
+offset_right = 1135.0
+offset_bottom = 545.0
+
+[node name="Inspector Label" type="Label" parent="Inspector Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 85.0
+offset_bottom = 25.0
+text = "Inspector:"
+
+[node name="Deselect Button" type="Button" parent="Inspector Panel"]
+layout_mode = 0
+offset_left = -83.0
+offset_top = 466.0
+offset_right = -9.0
+offset_bottom = 497.0
+text = "Deselect"
+
+[node name="Delete Button" type="Button" parent="Inspector Panel"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = -1.0
+offset_right = 167.0
+offset_bottom = 30.0
+text = "Delete"
+
+[node name="Name LineEdit" type="LineEdit" parent="Inspector Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 33.0
+offset_right = 172.0
+offset_bottom = 64.0
+placeholder_text = "Object name..."
+
+[node name="Position Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 75.0
+offset_right = 51.0
+offset_bottom = 115.0
+
+[node name="Position Label" type="Label" parent="Inspector Panel/Position Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Position:
+X: 
+Y: 
+Z: "
+
+[node name="xpos SpinBox" type="SpinBox" parent="Inspector Panel/Position Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 169.0
+offset_bottom = 52.0
+min_value = -500.0
+max_value = 500.0
+
+[node name="ypos SpinBox" type="SpinBox" parent="Inspector Panel/Position Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 53.0
+offset_right = 169.0
+offset_bottom = 84.0
+max_value = 500.0
+
+[node name="zpos SpinBox" type="SpinBox" parent="Inspector Panel/Position Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 83.0
+offset_right = 169.0
+offset_bottom = 114.0
+min_value = -500.0
+max_value = 500.0
+
+[node name="Rotation Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 192.0
+offset_right = 51.0
+offset_bottom = 232.0
+
+[node name="Rotation Label" type="Label" parent="Inspector Panel/Rotation Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Rotation:
+X: 
+Y: 
+Z: "
+
+[node name="xrot SpinBox" type="SpinBox" parent="Inspector Panel/Rotation Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 169.0
+offset_bottom = 52.0
+min_value = -360.0
+max_value = 360.0
+
+[node name="yrot SpinBox" type="SpinBox" parent="Inspector Panel/Rotation Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 53.0
+offset_right = 169.0
+offset_bottom = 84.0
+min_value = -360.0
+max_value = 360.0
+
+[node name="zrot SpinBox" type="SpinBox" parent="Inspector Panel/Rotation Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 83.0
+offset_right = 169.0
+offset_bottom = 114.0
+min_value = -360.0
+max_value = 360.0
+
+[node name="Scale Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 310.0
+offset_right = 51.0
+offset_bottom = 350.0
+
+[node name="Scale Label" type="Label" parent="Inspector Panel/Scale Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Scale:
+X: 
+Y: 
+Z: "
+
+[node name="xscale SpinBox" type="SpinBox" parent="Inspector Panel/Scale Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 23.0
+offset_right = 169.0
+offset_bottom = 54.0
+min_value = 1.0
+value = 1.0
+
+[node name="yscale SpinBox" type="SpinBox" parent="Inspector Panel/Scale Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 54.0
+offset_right = 169.0
+offset_bottom = 85.0
+min_value = 1.0
+value = 1.0
+
+[node name="zscale SpinBox" type="SpinBox" parent="Inspector Panel/Scale Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 83.0
+offset_right = 169.0
+offset_bottom = 114.0
+min_value = 1.0
+value = 1.0
+
+[node name="SpawnPoint Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 310.0
+offset_right = 51.0
+offset_bottom = 350.0
+
+[node name="Spawnpoint Label" type="Label" parent="Inspector Panel/SpawnPoint Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Spawnpoint Control"
+
+[node name="Inspector Spawnpoint OptionButton" type="OptionButton" parent="Inspector Panel/SpawnPoint Control"]
+layout_mode = 0
+offset_top = 33.0
+offset_right = 67.0
+offset_bottom = 64.0
+selected = 0
+item_count = 2
+popup/item_0/text = "Red"
+popup/item_0/id = 0
+popup/item_1/text = "Blue"
+popup/item_1/id = 1
+
+[node name="ControlZone Control 4" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 432.0
+offset_right = 51.0
+offset_bottom = 472.0
+
+[node name="Control Zone Label" type="Label" parent="Inspector Panel/ControlZone Control 4"]
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 23.0
+text = "Control Zone"
+
+[node name="Inspector Control Zone OptionButton" type="OptionButton" parent="Inspector Panel/ControlZone Control 4"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 112.0
+offset_bottom = 58.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Shamwow"
+popup/item_0/id = 0
+popup/item_1/text = "A"
+popup/item_1/id = 1
+popup/item_2/text = "B"
+popup/item_2/id = 2
+popup/item_3/text = "C"
+popup/item_3/id = 3
+
+[node name="Flag Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 310.0
+offset_right = 51.0
+offset_bottom = 350.0
+
+[node name="Flag Control Label" type="Label" parent="Inspector Panel/Flag Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Flag Editor"
+
+[node name="Inspector Flag OptionButton" type="OptionButton" parent="Inspector Panel/Flag Control"]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 143.0
+offset_bottom = 60.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Red Flag"
+popup/item_0/id = 0
+popup/item_1/text = "Red Win Zone"
+popup/item_1/id = 1
+popup/item_2/text = "Blue Flag"
+popup/item_2/id = 2
+popup/item_3/text = "Blue Win Zone"
+popup/item_3/id = 3
+
+[node name="Conquest Capture Point Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 310.0
+offset_right = 51.0
+offset_bottom = 350.0
+
+[node name="Conquest Capture Point Label" type="Label" parent="Inspector Panel/Conquest Capture Point Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Conquest Capture Point
+
+NOTHING TO CONTROL"
+
+[node name="Push Zone Blocker Control 4" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 432.0
+offset_right = 51.0
+offset_bottom = 472.0
+
+[node name="Push Zone Blocker Label" type="Label" parent="Inspector Panel/Push Zone Blocker Control 4"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 81.0
+offset_bottom = 25.0
+text = "Push Zone"
+
+[node name="Push Zone OptionButton" type="OptionButton" parent="Inspector Panel/Push Zone Blocker Control 4"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 42.0
+offset_bottom = 58.0
+selected = 0
+item_count = 4
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+
+[node name="Push Spawn Control" type="Control" parent="Inspector Panel"]
+visible = false
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 310.0
+offset_right = 51.0
+offset_bottom = 350.0
+
+[node name="Label" type="Label" parent="Inspector Panel/Push Spawn Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Push Spawn Control"
+
+[node name="Push Spawn OptionButton" type="OptionButton" parent="Inspector Panel/Push Spawn Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 30.0
+offset_right = 122.0
+offset_bottom = 61.0
+selected = 0
+item_count = 8
+popup/item_0/text = "Red Zone 0"
+popup/item_0/id = 0
+popup/item_1/text = "Blue Zone 0"
+popup/item_1/id = 1
+popup/item_2/text = "Red Zone 1"
+popup/item_2/id = 2
+popup/item_3/text = "Blue Zone 1"
+popup/item_3/id = 3
+popup/item_4/text = "Red Zone 2"
+popup/item_4/id = 4
+popup/item_5/text = "Blue Zone 2"
+popup/item_5/id = 5
+popup/item_6/text = "Red Zone 3"
+popup/item_6/id = 6
+popup/item_7/text = "Blue Zone 3"
+popup/item_7/id = 7
+
+[node name="Save Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 556.0
+offset_right = 1139.0
+offset_bottom = 635.0
+
+[node name="Label" type="Label" parent="Save Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 98.0
+offset_bottom = 27.0
+text = "Field Name: "
+
+[node name="Save Panel LineEdit" type="LineEdit" parent="Save Panel"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 1.0
+offset_right = 412.0
+offset_bottom = 32.0
+placeholder_text = "name..."
+
+[node name="Save Button" type="Button" parent="Save Panel"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 40.0
+offset_right = 91.0
+offset_bottom = 71.0
+text = "Save"
+
+[node name="Upload Button" type="Button" parent="Save Panel"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 41.0
+offset_right = 364.0
+offset_bottom = 72.0
+disabled = true
+text = "Upload to Workshop"
+
+[node name="Load Field Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 90.0
+offset_right = 187.0
+offset_bottom = 624.0
+
+[node name="Switch Mode to Asset List Button" type="Button" parent="Load Field Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -41.0
+offset_right = 163.0
+offset_bottom = -10.0
+text = "Switch To Asset List"
+
+[node name="Load Field Title Label" type="Label" parent="Load Field Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Load Field:"
+
+[node name="Load Button" type="Button" parent="Load Field Panel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = -1.0
+offset_right = 150.0
+offset_bottom = 30.0
+text = "Load"
+
+[node name="Name Label" type="Label" parent="Load Field Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 27.0
+offset_right = 55.0
+offset_bottom = 50.0
+text = "Name:"
+
+[node name="Field To Load Label" type="Label" parent="Load Field Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 48.0
+offset_right = 46.0
+offset_bottom = 71.0
+text = "foobar
+1234567890"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Load Field Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 104.0
+offset_right = 168.0
+offset_bottom = 525.0
+
+[node name="Load Area VBoxContainer" type="VBoxContainer" parent="Load Field Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="Asset Spawn Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 13.0
+offset_top = 90.0
+offset_right = 187.0
+offset_bottom = 624.0
+
+[node name="Switch Mode to Load Field Button" type="Button" parent="Asset Spawn Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -41.0
+offset_right = 163.0
+offset_bottom = -10.0
+text = "Switch To Load Field"
+
+[node name="Spawn Asset Label" type="Label" parent="Asset Spawn Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Spawn Asset:"
+
+[node name="Spawn Button" type="Button" parent="Asset Spawn Panel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = -1.0
+offset_right = 150.0
+offset_bottom = 30.0
+text = "Spawn"
+
+[node name="Name Label" type="Label" parent="Asset Spawn Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 27.0
+offset_right = 55.0
+offset_bottom = 50.0
+text = "Name:"
+
+[node name="Field To Load Label" type="Label" parent="Asset Spawn Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 48.0
+offset_right = 46.0
+offset_bottom = 71.0
+text = "foobar
+1234567890"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Asset Spawn Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 104.0
+offset_right = 168.0
+offset_bottom = 525.0
+
+[node name="Asset Spawn List VBoxContainer" type="VBoxContainer" parent="Asset Spawn Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="Help Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Close Help Button" type="Button" parent="Help Panel"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 3.0
+offset_right = 593.0
+offset_bottom = 34.0
+text = "Close"
+
+[node name="Help Text Label" type="Label" parent="Help Panel"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 148.0
+offset_right = 950.0
+offset_bottom = 491.0
+text = "How to use:
+
+Z to toggle \"FPS look.\"
+While in FPS Look Mode, right click to spawn currently selected assets to spawn from the left side
+panel. Assets will spawn where you are looking, with a minimum location of Y: 0.
+
+Use the top middle panel to spawn game mode specific objects. 
+Basic Spawn points are used in all game modes EXCEPT \"Push.\" 
+
+Control Zones are used for \"Shamwow\" and \"King of the Hill.\" 
+
+Conquest capture points must be activated by players manually, NOT by being in an area, like
+\"Shamwow\" and \"King of the Hill.\"
+
+Press Z again to enable the mouse. Use the mouse cursor to click on objects. 
+Use the right hand \"Inspector\" to change attributes of the selected object such as position, and
+various settings like the team a spawn point contributes to."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_x7k5k")
+
+[connection signal="button_down" from="New Area Button" to="." method="new_map"]
+[connection signal="button_down" from="Show Help Panel Button" to="." method="show_help_panel"]
+[connection signal="button_down" from="Special Objects Panel/Spawn Point Button" to="." method="SpawnSpawnPoint"]
+[connection signal="button_down" from="Special Objects Panel/Control Zone Button" to="." method="SpawnControlZone"]
+[connection signal="button_down" from="Special Objects Panel/Flag Button" to="." method="SpawnFlag"]
+[connection signal="button_down" from="Special Objects Panel/Push Zone Blocker Button" to="." method="SpawnPushBlocker"]
+[connection signal="button_down" from="Special Objects Panel/Push Spawn Button" to="." method="SpawnPushSpawn"]
+[connection signal="button_down" from="Inspector Panel/Deselect Button" to="." method="deselect_scenery"]
+[connection signal="button_down" from="Inspector Panel/Delete Button" to="." method="delete"]
+[connection signal="value_changed" from="Inspector Panel/Position Control/xpos SpinBox" to="." method="position_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Position Control/ypos SpinBox" to="." method="position_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Position Control/zpos SpinBox" to="." method="position_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Rotation Control/xrot SpinBox" to="." method="rotation_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Rotation Control/yrot SpinBox" to="." method="rotation_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Rotation Control/zrot SpinBox" to="." method="rotation_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Scale Control/xscale SpinBox" to="." method="scale_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Scale Control/yscale SpinBox" to="." method="scale_adjusted"]
+[connection signal="value_changed" from="Inspector Panel/Scale Control/zscale SpinBox" to="." method="scale_adjusted"]
+[connection signal="item_selected" from="Inspector Panel/SpawnPoint Control/Inspector Spawnpoint OptionButton" to="." method="spawn_point_adjusted"]
+[connection signal="item_selected" from="Inspector Panel/ControlZone Control 4/Inspector Control Zone OptionButton" to="." method="control_zone_adjusted"]
+[connection signal="item_selected" from="Inspector Panel/Flag Control/Inspector Flag OptionButton" to="." method="flag_adjusted"]
+[connection signal="item_selected" from="Inspector Panel/Push Zone Blocker Control 4/Push Zone OptionButton" to="." method="push_zone_adjusted"]
+[connection signal="item_selected" from="Inspector Panel/Push Spawn Control/Push Spawn OptionButton" to="." method="spawn_point_adjusted"]
+[connection signal="button_down" from="Save Panel/Save Button" to="." method="save_map"]
+[connection signal="button_down" from="Load Field Panel/Switch Mode to Asset List Button" to="." method="Switch_To_Asset_list_button"]
+[connection signal="button_down" from="Load Field Panel/Load Button" to="." method="load_map"]
+[connection signal="button_down" from="Asset Spawn Panel/Switch Mode to Load Field Button" to="." method="Switch_To_Load_Field_button"]
+[connection signal="button_down" from="Asset Spawn Panel/Spawn Button" to="." method="SpawnAssetScenery"]
+[connection signal="button_down" from="Help Panel/Close Help Button" to="." method="hide_help_panel"]

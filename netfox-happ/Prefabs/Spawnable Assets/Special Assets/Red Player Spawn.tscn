@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2855sfpsxmry"]
+
+[ext_resource type="Shader" uid="uid://cgykxepafavhe" path="res://Shaders/SciFi Hologram.gdshader" id="1_4j87i"]
+[ext_resource type="Script" uid="uid://cgfqvytf8ia2w" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/SceneryIdentifier.gd" id="1_5osg6"]
+[ext_resource type="Script" uid="uid://bhe1sgi1wgn5" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/Player Spawn Shader Manager.gd" id="2_5osg6"]
+[ext_resource type="PackedScene" uid="uid://d3xhtltbwclx4" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/Low Poly Human Murine.glb" id="3_2cylb"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_3y0fm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atw8x"]
+render_priority = 0
+shader = ExtResource("1_4j87i")
+shader_parameter/line_color = Color(1, 0, 0, 1)
+shader_parameter/line_width = 1.0
+shader_parameter/line_blur = 0.0
+shader_parameter/line_speed = 4.75e-08
+shader_parameter/straight_lines = true
+shader_parameter/interrupt_width = 1.0
+shader_parameter/interrupt_blur = 0.0
+shader_parameter/interrupt_speed = 4.75e-08
+shader_parameter/glow_color = Color(0.5, 0.75, 1, 1)
+shader_parameter/glow_itensity = 0.0
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4j87i"]
+render_priority = 0
+shader = ExtResource("1_4j87i")
+shader_parameter/line_color = Color(1, 0, 0, 1)
+shader_parameter/line_width = 1.0
+shader_parameter/line_blur = 0.0
+shader_parameter/line_speed = 4.75e-08
+shader_parameter/straight_lines = true
+shader_parameter/interrupt_width = 1.0
+shader_parameter/interrupt_blur = 0.0
+shader_parameter/interrupt_speed = 4.75e-08
+shader_parameter/glow_color = Color(0.5, 0.75, 1, 1)
+shader_parameter/glow_itensity = 0.0
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 1.0
+
+[node name="Red Spawn" type="Node3D"]
+script = ExtResource("1_5osg6")
+scenery_type = 1
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 1.206, 0.529)
+mesh = SubResource("PrismMesh_3y0fm")
+material = SubResource("ShaderMaterial_atw8x")
+
+[node name="Low Poly Human Murine" parent="." instance=ExtResource("3_2cylb")]
+script = ExtResource("2_5osg6")
+myShaderMaterial = SubResource("ShaderMaterial_4j87i")

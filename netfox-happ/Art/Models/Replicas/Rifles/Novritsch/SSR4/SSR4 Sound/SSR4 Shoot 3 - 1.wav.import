@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://douraj2aoyvw4"
+path="res://.godot/imported/SSR4 Shoot 3 - 1.wav-ec4cd7430e39d4500356a1ce53c6ee8c.sample"
+
+[deps]
+
+source_file="res://Art/Models/Replicas/Rifles/Novritsch/SSR4/SSR4 Sound/SSR4 Shoot 3 - 1.wav"
+dest_files=["res://.godot/imported/SSR4 Shoot 3 - 1.wav-ec4cd7430e39d4500356a1ce53c6ee8c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

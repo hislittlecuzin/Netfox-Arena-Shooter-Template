@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://besa80pqgqp3u"]
+
+[ext_resource type="Script" uid="uid://cgfqvytf8ia2w" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/SceneryIdentifier.gd" id="1_i7dro"]
+[ext_resource type="PackedScene" uid="uid://cpd55vi2kvtlh" path="res://Art/Models/Scenery/Field/Ballahack Airsoft/Main Town/Shipping Container Template.glb" id="2_on3lu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7dro"]
+size = Vector3(10.4, 3, 3.4)
+
+[node name="Basic Shipping Container" type="StaticBody3D"]
+script = ExtResource("1_i7dro")
+index = 1
+
+[node name="Shipping Container Template" parent="." instance=ExtResource("2_on3lu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_i7dro")

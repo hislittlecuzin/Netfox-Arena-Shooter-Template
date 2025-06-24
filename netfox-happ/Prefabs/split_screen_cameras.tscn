@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://dssckyorys5xg"]
+
+[ext_resource type="Script" uid="uid://cb7rm7uvssk4y" path="res://Scripts/Field And Game Mode/Players/split_screen_cameras.gd" id="1_3rwb3"]
+
+[node name="SplitScreenCameras" type="Control" node_paths=PackedStringArray("player_1_camera", "player_2_camera")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3rwb3")
+player_1_camera = NodePath("PlayerOne SubViewportContainer/SubViewport/Player 1 Camera3D")
+player_2_camera = NodePath("PlayerTwo SubViewportContainer/SubViewport/Player 2 Camera3D")
+
+[node name="PlayerOne SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 324.0
+grow_horizontal = 2
+
+[node name="SubViewport" type="SubViewport" parent="PlayerOne SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 324)
+render_target_update_mode = 4
+
+[node name="Player 1 Camera3D" type="Camera3D" parent="PlayerOne SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.726944, 1.60122)
+cull_mask = 3
+
+[node name="PlayerTwo SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -324.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SubViewport" type="SubViewport" parent="PlayerTwo SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 324)
+render_target_update_mode = 4
+
+[node name="Player 2 Camera3D" type="Camera3D" parent="PlayerTwo SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.812147, 1.93449)
+cull_mask = 5

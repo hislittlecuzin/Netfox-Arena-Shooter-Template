@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv5ogqy3h7di7"]
+
+[ext_resource type="Script" uid="uid://dlfxxosu6ic0r" path="res://Scripts/Menus/GameModeSelectButton.gd" id="1_crja8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_crja8")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Game Mode Foobar"
+
+[connection signal="button_down" from="Button" to="." method="set_game_mode"]

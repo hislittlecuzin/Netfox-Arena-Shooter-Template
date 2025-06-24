@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ib3hgfch3n0b"]
+
+[ext_resource type="Script" uid="uid://cvjr0a0ro7oyr" path="res://Scenes/Map Editor/map_3d_editor_controller.gd" id="1_ybpaq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v2kmi"]
+
+[node name="Map3DEditorController" type="CharacterBody3D" node_paths=PackedStringArray("cam")]
+script = ExtResource("1_ybpaq")
+cam = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -5)
+
+[node name="Scenery Spawn Point Node3D" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_v2kmi")
