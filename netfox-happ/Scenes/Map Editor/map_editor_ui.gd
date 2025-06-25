@@ -1,6 +1,9 @@
 extends Control
 class_name map_editor_ui
 
+
+var main_menu_script : Main_Menu
+
 # ut_id and mapname
 var maps_available_to_load : Dictionary = {}
 const map_index_file_location : String = "custom_maps/maps.index"
@@ -172,6 +175,8 @@ func _ready() -> void:
 		temp.queue_free()
 		asset_options_to_load_vbox.add_child(new_button)
 	
+	steamworks_callbacks_setup()
+	
 	pass # Replace with function body.
 
 
@@ -179,6 +184,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+#region Main Editor Function
 
 #region Save / Load Functionality
 
@@ -189,13 +196,17 @@ func new_map():
 		child.queue_free()
 	current_field = custom_field_file_definition.new()
 	current_field.ut_id = "a" + str( Time.get_unix_time_from_system() )
-	map_ut_id_to_load_on_save = str(current_field.ut_id)
+	map_ut_id_to_load_on_save = current_field.ut_id
+	steam_workshop_item_id = -1
+	current_field.steam_workshop_id = steam_workshop_item_id
+	steam_workshop_item_id_text_input_spin_box.value = -1
 	pass
 
 func save_map():
 	current_field.field_name = save_panel_line_edit.text
 	
 	current_field.ut_id = map_ut_id_to_load_on_save
+	current_field.steam_workshop_id = steam_workshop_item_id
 	var name = maps_available_to_load.get_or_add(current_field.ut_id, current_field.field_name)
 	if name != current_field.field_name:
 		var new_id_to_use : String = "a" + str( Time.get_unix_time_from_system() )
@@ -204,9 +215,16 @@ func save_map():
 		current_field.ut_id = new_id_to_use
 	var save_map_index = JSON.stringify(maps_available_to_load)
 	
-	var map_file_name : String = "custom_maps/" + map_ut_id_to_load_on_save + "-" + str(current_field.field_name) + ".happmap"
+	var map_name_hyphenated : String = current_field.ut_id + "-" + current_field.field_name
+	DirAccess.make_dir_recursive_absolute("custom_maps/" + map_name_hyphenated)
+	var map_file_name : String = "custom_maps/" + map_name_hyphenated + "/" + map_name_hyphenated + ".happmap"
 	
+	#region generate map file contents
 	var _field_to_be : custom_field_file_definition = custom_field_file_definition.new()
+	_field_to_be.field_name = current_field.field_name
+	_field_to_be.ut_id = current_field.ut_id
+	_field_to_be.steam_workshop_id = current_field.steam_workshop_id
+	
 	for child in navigation_region.get_children():
 		if (child is Scenery_Identifier) == false:
 			print ("NOT SCENERY??? ", child.name)
@@ -270,6 +288,8 @@ func save_map():
 		
 		pass
 	
+	#endregion
+	
 	var save_map_file_access = FileAccess.open(map_file_name , FileAccess.WRITE )
 	var save_data = JsonClassConverter.class_to_json_string(_field_to_be)
 	save_map_file_access.store_string(save_data)
@@ -288,16 +308,18 @@ func load_map():
 	new_map()
 	#map_file_save_folder
 	
-	var _file_name = map_file_save_folder + map_ut_id_to_load_on_load + "-" + map_file_to_load_on_load + ".happmap"
+	var hyphenated_map_file : String = map_ut_id_to_load_on_load + "-" + map_file_to_load_on_load
+	var _file_name = map_file_save_folder + "/" + hyphenated_map_file + "/" + hyphenated_map_file + ".happmap"
 	map_ut_id_to_load_on_save = map_ut_id_to_load_on_load
 	var map_to_load_json_file := FileAccess.open(_file_name, FileAccess.READ)
 	var map_json_text = map_to_load_json_file.get_as_text()
-	var new_current_field = JsonClassConverter.json_string_to_class(custom_field_file_definition , map_json_text)
-	current_field = new_current_field
+	current_field = JsonClassConverter.json_string_to_class(custom_field_file_definition , map_json_text)
+	#current_field = new_current_field
 	map_to_load_json_file.close()
 	
 	save_panel_line_edit.text = map_file_to_load_on_load
-	
+	steam_workshop_item_id = current_field.steam_workshop_id
+	steam_workshop_item_id_text_input_spin_box.value = current_field.steam_workshop_id
 	#Spawn stuff in.
 	#region spawns in objects for the loading of the map.
 	
@@ -437,6 +459,14 @@ func Switch_To_Load_Field_button() -> void:
 	pass # Replace with function body.
 #endregion
 
+#region steamworks panels
+func show_workshop_panel():
+	steamworks_panel.visible = true
+
+func hide_workshop_panel():
+	steamworks_panel.visible = false
+#endregion
+
 #region help panel
 
 func show_help_panel():
@@ -446,6 +476,9 @@ func hide_help_panel():
 	helpPanel.visible = false
 
 #endregion
+
+func quit_to_main_menu():
+	main_menu_script.exit_map_editor()
 
 #endregion
 
@@ -747,3 +780,97 @@ func set_scenery_to_load(name_to_load : String, index_to_spawn : int):
 	what_to_spawn_index = index_to_spawn
 	asset_to_spawn_label.text = name_to_load + "\n" + str(index_to_spawn)
 	#print("Index: " + whatToSpawnIndex + " ")
+
+#endregion
+
+
+#region Steamworks Workshop Code:
+
+@export_category("Steam Workshop")
+@export var steamworks_panel : Panel
+@export var steamworks_map_to_upload_label : Label
+@export var steamworks_item_description_text_edit : TextEdit
+
+@export var steamworks_warn_accept_tos_label : Label
+@export var steamworks_create_button : Button
+@export var steamworks_update_button : Button
+
+@export var steam_workshop_item_id : int = -1
+#@export var steam_workshop_item_id_text_input_line_edit : LineEdit
+@export var steam_workshop_item_id_text_input_spin_box : SpinBox
+
+#all the callbacks for the calls being made
+func steamworks_callbacks_setup():
+	Steam.item_created.connect(on_create_new_steamworks_item_success_callback)
+	Steam.item_updated.connect(on_item_updated_steamworks_item_callback)
+	pass
+
+#region create Steamworks item
+#calls to create item
+func create_new_steamworks_item():
+	Steam.createItem(SteamManager.steam_app_id, Steam.WorkshopFileType.WORKSHOP_FILE_TYPE_COMMUNITY)
+	
+	pass
+#confirms item creation
+func on_create_new_steamworks_item_success_callback(result_enum : int, file_id : int, accepted_tos_of_workshop : bool):
+	if accepted_tos_of_workshop == true:
+		#steamworks_create_button.disabled = true
+		#steamworks_update_button.disabled = true
+		steamworks_warn_accept_tos_label.text = "Accept TOS before uploading."
+		Steam.activateGameOverlayToWebPage("steam://url/CommunityFilePage/" + str(file_id), 0 )
+		return
+	if result_enum != Steam.RESULT_OK:
+		#steamworks_create_button.disabled = true
+		#steamworks_update_button.disabled = true
+		steamworks_warn_accept_tos_label.text = "Error Code : " + str(result_enum)
+	steam_workshop_item_id = file_id
+	steamworks_warn_accept_tos_label.text = "Item ID Received : " + str(steam_workshop_item_id)
+	#steam_workshop_item_id_text_input_line_edit.text = str(steam_workshop_item_id)
+	steam_workshop_item_id_text_input_spin_box.value = steam_workshop_item_id
+	pass
+
+#endregion
+
+#region edit Steamworks item
+
+#func steam_workshop_item_id_line_edit_text_changed(new_text : String):
+	#if new_text
+	#pass
+
+func update_existing_steamworks_item():
+	steamworks_warn_accept_tos_label.text = "Updating..."
+	if steam_workshop_item_id_text_input_spin_box.value < 0:
+		steamworks_warn_accept_tos_label.text = "Add an appropriate Steam Workshop ID."
+		return
+	
+	var update_handle : int = Steam.startItemUpdate(SteamManager.steam_app_id, int( steam_workshop_item_id_text_input_spin_box.value ) ) # ID of Steam Workshop Item
+	
+	if false == Steam.setItemTitle(update_handle, current_field.field_name):
+		steamworks_warn_accept_tos_label.text = "Failed to update Title!"
+		return
+	if false == Steam.setItemDescription(update_handle, steamworks_item_description_text_edit.text):
+		steamworks_warn_accept_tos_label.text = "Failed to update Description!"
+		return
+	var file_path : String = OS.get_executable_path().get_base_dir() + "/custom_maps/" + current_field.ut_id + "-" + current_field.field_name
+	print(file_path)
+	if false == Steam.setItemContent(update_handle, file_path):
+		steamworks_warn_accept_tos_label.text = "Failed to set item Content!"
+		return
+	
+	Steam.submitItemUpdate(update_handle, "foobar") # Change note is the string.
+	pass
+
+
+func on_item_updated_steamworks_item_callback(result: int, need_accept_tos: bool):
+	if need_accept_tos:
+		steamworks_warn_accept_tos_label.text = "Accept TOS before updating existing mods."
+	match (result):
+		1:
+			steamworks_warn_accept_tos_label.text = "Uploaded successfully!"
+		_:
+			steamworks_warn_accept_tos_label.text = "Error code : " + str(result)
+	pass
+
+#endregion
+
+#endregion

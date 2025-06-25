@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dosq3mxgjrj7p"]
+[gd_scene load_steps=13 format=3 uid="uid://dosq3mxgjrj7p"]
 
 [ext_resource type="Script" uid="uid://dhweu4qi72dki" path="res://Scenes/Map Editor/map_editor_ui.gd" id="1_l3bx7"]
 [ext_resource type="PackedScene" uid="uid://chnqplpuhfgwt" path="res://Prefabs/Spawnable Assets/Special Assets/Player Spawn.tscn" id="2_0baog"]
@@ -12,7 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://da5namxcsn4sk" path="res://Prefabs/Spawnable Assets/Special Assets/Push Player Spawn.tscn" id="6_4dflg"]
 [ext_resource type="Texture2D" uid="uid://b54njbnbn1w8h" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/circle32.png" id="7_x7k5k"]
 
-[node name="Map Editor UI" type="Control" node_paths=PackedStringArray("loadAreaMenu", "map_options_to_load_vbox", "spawnAssetsMenu", "asset_options_to_load_vbox", "helpPanel", "asset_spawn_panel", "asset_to_spawn_label", "list_of_spawnable_assets_v_box", "field_load_panel", "field_to_load_lable", "list_of_loadable_fields_v_box", "save_panel_line_edit", "special_object_spawnpoint_optionButton", "special_object_controlzone_optionButton", "special_object_flagoption_optionButton", "special_object_pushblocker_optionButton", "special_object_pushspawn_optionButton", "inspectorAssetNameField", "inspectorPositionControl", "inspector_X_positionControl", "inspector_Y_positionControl", "inspector_Z_positionControl", "inspectorRotationControl", "inspector_X_rotationControl", "inspector_Y_rotationControl", "inspector_Z_rotationControl", "inspectorScaleControl", "inspector_X_scaleControl", "inspector_Y_scaleControl", "inspector_Z_scaleControl", "inspectorSpawnPointControl", "inspectorSpawnPointOption", "inspectorControlZoneControl", "inspectorControlZoneOption", "inspectorFlagControl", "inspectorFlagOption", "inspectorConquestCapturePointControl", "inspectorPushZoneBlockerControl", "inspectorPushZoneBlockerOption", "inspectorPushSpawnControl", "inspectorPushSpawnOption")]
+[sub_resource type="LabelSettings" id="LabelSettings_7slcg"]
+font_size = 24
+font_color = Color(1, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Map Editor UI" type="Control" node_paths=PackedStringArray("loadAreaMenu", "map_options_to_load_vbox", "spawnAssetsMenu", "asset_options_to_load_vbox", "helpPanel", "asset_spawn_panel", "asset_to_spawn_label", "list_of_spawnable_assets_v_box", "field_load_panel", "field_to_load_lable", "list_of_loadable_fields_v_box", "save_panel_line_edit", "special_object_spawnpoint_optionButton", "special_object_controlzone_optionButton", "special_object_flagoption_optionButton", "special_object_pushblocker_optionButton", "special_object_pushspawn_optionButton", "inspectorAssetNameField", "inspectorPositionControl", "inspector_X_positionControl", "inspector_Y_positionControl", "inspector_Z_positionControl", "inspectorRotationControl", "inspector_X_rotationControl", "inspector_Y_rotationControl", "inspector_Z_rotationControl", "inspectorScaleControl", "inspector_X_scaleControl", "inspector_Y_scaleControl", "inspector_Z_scaleControl", "inspectorSpawnPointControl", "inspectorSpawnPointOption", "inspectorControlZoneControl", "inspectorControlZoneOption", "inspectorFlagControl", "inspectorFlagOption", "inspectorConquestCapturePointControl", "inspectorPushZoneBlockerControl", "inspectorPushZoneBlockerOption", "inspectorPushSpawnControl", "inspectorPushSpawnOption", "steamworks_panel", "steamworks_map_to_upload_label", "steamworks_item_description_text_edit", "steamworks_warn_accept_tos_label", "steamworks_create_button", "steamworks_update_button", "steam_workshop_item_id_text_input_spin_box")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,6 +77,13 @@ inspectorPushZoneBlockerControl = NodePath("Inspector Panel/Push Zone Blocker Co
 inspectorPushZoneBlockerOption = NodePath("Inspector Panel/Push Zone Blocker Control 4/Push Zone OptionButton")
 inspectorPushSpawnControl = NodePath("Inspector Panel/Push Spawn Control")
 inspectorPushSpawnOption = NodePath("Inspector Panel/Push Spawn Control/Push Spawn OptionButton")
+steamworks_panel = NodePath("Steam Workshop Upload")
+steamworks_map_to_upload_label = NodePath("Steam Workshop Upload/Map to upload Label")
+steamworks_item_description_text_edit = NodePath("Steam Workshop Upload/Steam Workshop Description TextEdit")
+steamworks_warn_accept_tos_label = NodePath("Steam Workshop Upload/Warn user accept TOS Label")
+steamworks_create_button = NodePath("Steam Workshop Upload/Upload Buttons Panel/Create New Steamworks Item Button")
+steamworks_update_button = NodePath("Steam Workshop Upload/Upload Buttons Panel/Edit Existing Steamworks Item Button")
+steam_workshop_item_id_text_input_spin_box = NodePath("Steam Workshop Upload/Steam Item ID SpinBox")
 
 [node name="Main Menu Button" type="Button" parent="."]
 layout_mode = 0
@@ -623,7 +636,6 @@ offset_left = 197.0
 offset_top = 41.0
 offset_right = 364.0
 offset_bottom = 72.0
-disabled = true
 text = "Upload to Workshop"
 
 [node name="Load Field Panel" type="Panel" parent="."]
@@ -782,6 +794,124 @@ position = Vector2(576, 324)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("7_x7k5k")
 
+[node name="Steam Workshop Upload" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Close Steam Workshop Button" type="Button" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 3.0
+offset_right = 568.0
+offset_bottom = 34.0
+text = "Close"
+
+[node name="Title Label" type="Label" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 143.0
+offset_right = 432.0
+offset_bottom = 166.0
+text = "Steam Workshop Upload Panel
+Map To upload:"
+
+[node name="Map to upload Label" type="Label" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 192.0
+offset_right = 288.0
+offset_bottom = 241.0
+text = "foobar
+0123456789"
+
+[node name="Instruction Label" type="Label" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 156.0
+offset_right = 835.0
+offset_bottom = 179.0
+text = "Steps:
+1. Load the Field/Map you want to uploaf.
+2. Create your Steam Workshop Item.
+2. ???
+3. Update your Existing Workshop Item.
+4. Profit."
+
+[node name="Steam Workshop Description TextEdit" type="TextEdit" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 347.0
+offset_right = 913.0
+offset_bottom = 490.0
+placeholder_text = "Steam Workshop item description...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lorem leo, viverra vitae sem sed, hendrerit convallis turpis. Donec viverra, enim at rutrum vestibulum, lectus tortor pretium elit, ut blandit ipsum purus vitae libero. Donec risus mauris, venenatis quis volutpat sit amet, rutrum at elit. Nulla lacinia convallis tempor. Donec sit amet porta quam. Nam quis lectus laoreet ipsum malesuada lacinia. Vestibulum elit sapien, sodales et suscipit ut, egestas ac turpis. Nunc sed pellentesque lacus. Vestibulum vestibulum leo a erat efficitur malesuada. Donec auctor velit vitae magna viverra ullamcorper. Sed dolor enim, molestie eu eros non, vestibulum varius orci."
+wrap_mode = 1
+
+[node name="Warn user accept TOS Label" type="Label" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 512.0
+offset_right = 533.0
+offset_bottom = 546.0
+label_settings = SubResource("LabelSettings_7slcg")
+
+[node name="Upload Buttons Panel" type="Panel" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 552.0
+offset_right = 724.0
+offset_bottom = 636.0
+
+[node name="Create New Steamworks Item Button" type="Button" parent="Steam Workshop Upload/Upload Buttons Panel"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 139.0
+offset_bottom = 33.0
+text = "Create NEW item"
+
+[node name="TOS Label" type="Label" parent="Steam Workshop Upload/Upload Buttons Panel/Create New Steamworks Item Button"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 33.0
+offset_right = 533.0
+offset_bottom = 82.0
+text = "By uploading you agree to TOS: 
+https://steamcommunity.com/sharedfiles/workshoplegalagreement"
+
+[node name="Edit Existing Steamworks Item Button" type="Button" parent="Steam Workshop Upload/Upload Buttons Panel"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = -1.0
+offset_right = 459.0
+offset_bottom = 30.0
+text = "Update Existing Item"
+
+[node name="Steam Item ID LineEdit" type="LineEdit" parent="Steam Workshop Upload"]
+visible = false
+layout_mode = 0
+offset_left = 558.0
+offset_top = 311.0
+offset_right = 913.0
+offset_bottom = 342.0
+placeholder_text = "Workshop ID; ie \"0123456\""
+virtual_keyboard_type = 2
+
+[node name="Steam Item ID SpinBox" type="SpinBox" parent="Steam Workshop Upload"]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 310.0
+offset_right = 913.0
+offset_bottom = 341.0
+min_value = -1.0
+max_value = 9.22337e+18
+rounded = true
+prefix = "Workshop ID:"
+
+[connection signal="button_down" from="Main Menu Button" to="." method="quit_to_main_menu"]
 [connection signal="button_down" from="New Area Button" to="." method="new_map"]
 [connection signal="button_down" from="Show Help Panel Button" to="." method="show_help_panel"]
 [connection signal="button_down" from="Special Objects Panel/Spawn Point Button" to="." method="SpawnSpawnPoint"]
@@ -806,8 +936,12 @@ texture = ExtResource("7_x7k5k")
 [connection signal="item_selected" from="Inspector Panel/Push Zone Blocker Control 4/Push Zone OptionButton" to="." method="push_zone_adjusted"]
 [connection signal="item_selected" from="Inspector Panel/Push Spawn Control/Push Spawn OptionButton" to="." method="spawn_point_adjusted"]
 [connection signal="button_down" from="Save Panel/Save Button" to="." method="save_map"]
+[connection signal="button_down" from="Save Panel/Upload Button" to="." method="show_workshop_panel"]
 [connection signal="button_down" from="Load Field Panel/Switch Mode to Asset List Button" to="." method="Switch_To_Asset_list_button"]
 [connection signal="button_down" from="Load Field Panel/Load Button" to="." method="load_map"]
 [connection signal="button_down" from="Asset Spawn Panel/Switch Mode to Load Field Button" to="." method="Switch_To_Load_Field_button"]
 [connection signal="button_down" from="Asset Spawn Panel/Spawn Button" to="." method="SpawnAssetScenery"]
 [connection signal="button_down" from="Help Panel/Close Help Button" to="." method="hide_help_panel"]
+[connection signal="button_down" from="Steam Workshop Upload/Close Steam Workshop Button" to="." method="hide_workshop_panel"]
+[connection signal="button_down" from="Steam Workshop Upload/Upload Buttons Panel/Create New Steamworks Item Button" to="." method="create_new_steamworks_item"]
+[connection signal="button_down" from="Steam Workshop Upload/Upload Buttons Panel/Edit Existing Steamworks Item Button" to="." method="update_existing_steamworks_item"]

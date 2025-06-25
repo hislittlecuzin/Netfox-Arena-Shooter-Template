@@ -6,6 +6,9 @@ var currentLobby: int
 
 const steam_app_id := 2478900
 
+#The IDs of all the Steam Workshop items
+var steam_workshop_items : Array
+
 var steam_enabled = true
 var is_host = true
 
@@ -18,6 +21,11 @@ var lobby_connection_id : Array[int] = []
 
 func _ready() -> void:
 	my_steam_id = Steam.getSteamID()
+	
+	steam_workshop_items = Steam.getSubscribedItems()
+	for _workshop_item in steam_workshop_items:
+		if Steam.getItemState(_workshop_item) == 8:
+			Steam.downloadItem(_workshop_item, true)
 	pass
 
 func _process(delta: float) -> void:

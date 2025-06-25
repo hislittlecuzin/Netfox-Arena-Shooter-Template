@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_38aua")
+map_editor_scene = "uid://dhqjdjvtgruaf"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 clip_contents = false
@@ -72,6 +73,10 @@ max_value = 0.011
 step = 0.001
 value = 0.003
 
+[node name="Map Editor Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Map Editor"
+
 [node name="Disconnect Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Disconnect"
@@ -82,3 +87,4 @@ text = "Quit"
 
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Host Button" to="." method="HostMultiplayerLobby"]
 [connection signal="button_down" from="VBoxContainer/Client Button" to="." method="FindLobbies"]
+[connection signal="button_down" from="VBoxContainer/Map Editor Button" to="." method="load_into_map_editor"]

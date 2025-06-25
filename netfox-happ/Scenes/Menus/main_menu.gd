@@ -14,6 +14,7 @@ func _ready() -> void:
 	Steam.lobby_chat_update.connect(SteamMatchmaking_OnLobbyConditionUpdate)
 	multiplayer.peer_connected.connect(_connection_joined)
 	multiplayer.connected_to_server.connect(I_am_client_and_Joined)
+	print("OS Path : " + OS.get_executable_path().get_base_dir())
 
 func HostMultiplayerLobby():
 	
@@ -198,3 +199,27 @@ func _connection_joined(connection_id: int):
 func I_am_client_and_Joined():
 	pass
 	#NetworkTime.start()
+
+
+
+#region Map Editor Stuff
+
+@export_category("Map Editor Stuff")
+@export_file("*.tscn") var map_editor_scene : String
+
+var map_editor_instance : Node3D
+
+func load_into_map_editor():
+	map_editor_instance = load( map_editor_scene ).instantiate()
+	map_editor_instance.get_child(0).main_menu_script = self
+	get_tree().root.add_child(map_editor_instance)
+	visible = false
+	pass
+
+func exit_map_editor():
+	map_editor_instance.queue_free()
+	map_editor_instance = null
+	visible = true
+	pass
+
+#endregion

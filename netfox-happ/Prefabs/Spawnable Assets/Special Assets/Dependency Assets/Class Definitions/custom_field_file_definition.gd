@@ -3,6 +3,7 @@ class_name custom_field_file_definition
 
 @export var field_name : String = ""
 @export var ut_id : String = "" # -1 fzt
+@export var steam_workshop_id : int = -1
 
 @export var basic_spawns : Dictionary[String, custom_field_asset_spawn_point] = {} #Array[custom_field_asset_spawn_point] = []
 #@export var red_spawns : Dictionary[float, custom_field_asset_spawn_point] = {} #Array[custom_field_asset_spawn_point] = []
