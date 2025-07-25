@@ -1,3 +1,6 @@
+#support me
+https://ko-fi.com/hislittlecuzin
+
 # Netfox-Arena-Shooter-Template
 
 This is a template for how to make a Steam FPS arena shooter using the Netfox library using 
