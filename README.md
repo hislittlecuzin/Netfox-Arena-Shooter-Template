@@ -1,4 +1,4 @@
-#support me
+# support me
 https://ko-fi.com/hislittlecuzin
 
 # Netfox-Arena-Shooter-Template
@@ -15,7 +15,7 @@ https://github.com/EiTaNBaRiBoA/JsonClassConverter
 Steam Multiplayer Peer
 https://godotengine.org/asset-library/asset/2258
 
-#Warning
+# Warning
 Not fully feature complete. 
 
 Any Gamer Words are to be ignored. 
@@ -25,7 +25,7 @@ You have to go to the Github Release branch.
 License still applies to the github release branch. 
 
 
-#Features:
+# Features:
 
 Lobby
 Splitscreen
@@ -35,7 +35,7 @@ Multiple Levels to choose from
 Start of Steam Workshop Support
 
 
-#Tour
+# Tour
 
 Start with the "Main Menu"
 MultiplayerManager.gd has a lot of netcode infrastructure. 
