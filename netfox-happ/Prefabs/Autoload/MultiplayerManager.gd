@@ -4,7 +4,7 @@ var my_steam_id
 
 var currentLobby: int
 
-const steam_app_id := 2478900
+const steam_app_id := 480
 
 #The IDs of all the Steam Workshop items
 var steam_workshop_items : Array
@@ -15,6 +15,7 @@ var is_host = true
 var lobbyUsernames : Array[String] = []
 var lobbyIDs : Array[int] = []
 var lobbyTeam : Array[int] = []
+var lobbySplitscreenTeam : Array[int] = []
 var lobbyIsSplitScreen : Array[bool] = []
 var lobby_player_is_ready : Array[bool] = []
 var lobby_connection_id : Array[int] = []
@@ -40,6 +41,7 @@ func AddLobbyUsername(new_id: int):
 		lobbyIDs.push_back( new_id )
 		lobbyUsernames.push_back( Steam.getFriendPersonaName( new_id ) )
 		lobbyTeam.push_back( 0 )
+		lobbySplitscreenTeam.push_back( 0 )
 		lobbyIsSplitScreen.push_back( false )
 		lobby_player_is_ready.push_back( false )
 		if new_id == Steam.getSteamID() and multiplayer.is_server():
@@ -67,6 +69,7 @@ func RemoveUsername(new_steam_id: int):
 	lobbyUsernames.remove_at(steam_id_to_remove)
 	lobbyIDs.remove_at(steam_id_to_remove)
 	lobbyTeam.remove_at(steam_id_to_remove)
+	lobbySplitscreenTeam.remove_at(steam_id_to_remove)
 	lobbyIsSplitScreen.remove_at(steam_id_to_remove)
 	lobby_player_is_ready.remove_at(steam_id_to_remove)
 	lobby_connection_id.remove_at(steam_id_to_remove)
@@ -76,12 +79,13 @@ func RemoveUsername(new_steam_id: int):
 
 
 @rpc("authority", "call_remote", "reliable")
-func verify_lobby_data(_l_teams : Array[int], _l_splitscreen : Array[bool], l_con_id : Array[int]):
+func verify_lobby_data(_l_teams : Array[int], _l_ss_teams : Array[int], _l_splitscreen : Array[bool], l_con_id : Array[int]):
 	for index in l_con_id.size():
 		if index >= l_con_id.size():
 			break
 		
 		lobbyTeam[index] = _l_teams[index]
+		lobbySplitscreenTeam[index] = _l_ss_teams[index]
 		lobbyIsSplitScreen[index] = _l_splitscreen[index]
 		
 	pass

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi3rgcax3oom2"
 path.s3tc="res://.godot/imported/Not Christmas Tree_Oak Trunk.jpg-461e207f326538536287b7d34f3e9803.s3tc.ctex"
+path.etc2="res://.godot/imported/Not Christmas Tree_Oak Trunk.jpg-461e207f326538536287b7d34f3e9803.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Generic/Foliage/Trees/Not Christmas Tree_Oak Trunk.jpg"
-dest_files=["res://.godot/imported/Not Christmas Tree_Oak Trunk.jpg-461e207f326538536287b7d34f3e9803.s3tc.ctex"]
+dest_files=["res://.godot/imported/Not Christmas Tree_Oak Trunk.jpg-461e207f326538536287b7d34f3e9803.s3tc.ctex", "res://.godot/imported/Not Christmas Tree_Oak Trunk.jpg-461e207f326538536287b7d34f3e9803.etc2.ctex"]
 
 [params]
 

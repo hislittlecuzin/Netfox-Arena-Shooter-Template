@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b3hw7pxi7kwkv"]
+
+[ext_resource type="Texture2D" uid="uid://b8f54poj57tub" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/Axis Object_AxisTexture.png" id="1_plttq"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("1_plttq")

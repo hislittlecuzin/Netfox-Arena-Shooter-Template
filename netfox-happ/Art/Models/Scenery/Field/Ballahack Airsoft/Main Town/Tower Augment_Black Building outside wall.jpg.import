@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwnedgm7x1l18"
 path.s3tc="res://.godot/imported/Tower Augment_Black Building outside wall.jpg-ec7180f3aadcb8c32b149a7745192257.s3tc.ctex"
+path.etc2="res://.godot/imported/Tower Augment_Black Building outside wall.jpg-ec7180f3aadcb8c32b149a7745192257.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Ballahack Airsoft/Main Town/Tower Augment_Black Building outside wall.jpg"
-dest_files=["res://.godot/imported/Tower Augment_Black Building outside wall.jpg-ec7180f3aadcb8c32b149a7745192257.s3tc.ctex"]
+dest_files=["res://.godot/imported/Tower Augment_Black Building outside wall.jpg-ec7180f3aadcb8c32b149a7745192257.s3tc.ctex", "res://.godot/imported/Tower Augment_Black Building outside wall.jpg-ec7180f3aadcb8c32b149a7745192257.etc2.ctex"]
 
 [params]
 

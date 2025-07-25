@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqewb2tgufwh1"
 path.s3tc="res://.godot/imported/Shipping Container Sparse Door Window_Helicopter Floor 3.jpg-6409f790ea629f655a507d1ff936ff3c.s3tc.ctex"
+path.etc2="res://.godot/imported/Shipping Container Sparse Door Window_Helicopter Floor 3.jpg-6409f790ea629f655a507d1ff936ff3c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Ballahack Airsoft/Main Town/Shipping Container Sparse Door Window_Helicopter Floor 3.jpg"
-dest_files=["res://.godot/imported/Shipping Container Sparse Door Window_Helicopter Floor 3.jpg-6409f790ea629f655a507d1ff936ff3c.s3tc.ctex"]
+dest_files=["res://.godot/imported/Shipping Container Sparse Door Window_Helicopter Floor 3.jpg-6409f790ea629f655a507d1ff936ff3c.s3tc.ctex", "res://.godot/imported/Shipping Container Sparse Door Window_Helicopter Floor 3.jpg-6409f790ea629f655a507d1ff936ff3c.etc2.ctex"]
 
 [params]
 

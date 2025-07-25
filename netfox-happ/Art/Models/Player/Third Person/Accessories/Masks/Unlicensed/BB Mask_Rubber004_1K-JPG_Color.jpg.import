@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2xe1sgp1e5bd"
 path.s3tc="res://.godot/imported/BB Mask_Rubber004_1K-JPG_Color.jpg-868259da0bce7fb92b0bd206ffc686f8.s3tc.ctex"
+path.etc2="res://.godot/imported/BB Mask_Rubber004_1K-JPG_Color.jpg-868259da0bce7fb92b0bd206ffc686f8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Player/Third Person/Accessories/Masks/Unlicensed/BB Mask_Rubber004_1K-JPG_Color.jpg"
-dest_files=["res://.godot/imported/BB Mask_Rubber004_1K-JPG_Color.jpg-868259da0bce7fb92b0bd206ffc686f8.s3tc.ctex"]
+dest_files=["res://.godot/imported/BB Mask_Rubber004_1K-JPG_Color.jpg-868259da0bce7fb92b0bd206ffc686f8.s3tc.ctex", "res://.godot/imported/BB Mask_Rubber004_1K-JPG_Color.jpg-868259da0bce7fb92b0bd206ffc686f8.etc2.ctex"]
 
 [params]
 

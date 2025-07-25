@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://hfv6ty2c476y"
 path.s3tc="res://.godot/imported/Skinny Tall Ice Pop Tree_Quarry Tree bark 1.jpg-1f8b432a5374a24216196f66201203bc.s3tc.ctex"
+path.etc2="res://.godot/imported/Skinny Tall Ice Pop Tree_Quarry Tree bark 1.jpg-1f8b432a5374a24216196f66201203bc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Generic/Foliage/Trees/Skinny Tall Ice Pop Tree_Quarry Tree bark 1.jpg"
-dest_files=["res://.godot/imported/Skinny Tall Ice Pop Tree_Quarry Tree bark 1.jpg-1f8b432a5374a24216196f66201203bc.s3tc.ctex"]
+dest_files=["res://.godot/imported/Skinny Tall Ice Pop Tree_Quarry Tree bark 1.jpg-1f8b432a5374a24216196f66201203bc.s3tc.ctex", "res://.godot/imported/Skinny Tall Ice Pop Tree_Quarry Tree bark 1.jpg-1f8b432a5374a24216196f66201203bc.etc2.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dosq3mxgjrj7p"]
+[gd_scene load_steps=16 format=3 uid="uid://dosq3mxgjrj7p"]
 
 [ext_resource type="Script" uid="uid://dhweu4qi72dki" path="res://Scenes/Map Editor/map_editor_ui.gd" id="1_l3bx7"]
 [ext_resource type="PackedScene" uid="uid://chnqplpuhfgwt" path="res://Prefabs/Spawnable Assets/Special Assets/Player Spawn.tscn" id="2_0baog"]
@@ -11,6 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://besa80pqgqp3u" path="res://Prefabs/Spawnable Assets/Scenery/makeshift buildings/Basic Shipping Container.tscn" id="5_ypm8w"]
 [ext_resource type="PackedScene" uid="uid://da5namxcsn4sk" path="res://Prefabs/Spawnable Assets/Special Assets/Push Player Spawn.tscn" id="6_4dflg"]
 [ext_resource type="Texture2D" uid="uid://b54njbnbn1w8h" path="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/circle32.png" id="7_x7k5k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ypm8w"]
+font_color = Color(0, 1, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pww3v"]
+font_color = Color(1, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1p6ta"]
+font_color = Color(0, 0, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7slcg"]
 font_size = 24
@@ -788,6 +803,31 @@ Conquest capture points must be activated by players manually, NOT by being in a
 Press Z again to enable the mouse. Use the mouse cursor to click on objects. 
 Use the right hand \"Inspector\" to change attributes of the selected object such as position, and
 various settings like the team a spawn point contributes to."
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 610.0
+offset_right = 269.0
+offset_bottom = 633.0
+text = "X"
+label_settings = SubResource("LabelSettings_ypm8w")
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 56.0
+offset_bottom = 23.0
+text = "Y"
+label_settings = SubResource("LabelSettings_pww3v")
+
+[node name="Label" type="Label" parent="Label/Label"]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 57.0
+offset_bottom = 23.0
+text = "Z"
+label_settings = SubResource("LabelSettings_1p6ta")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(576, 324)

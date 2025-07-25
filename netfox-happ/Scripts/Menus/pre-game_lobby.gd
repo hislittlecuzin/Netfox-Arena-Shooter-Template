@@ -74,7 +74,7 @@ func StartGame():
 	
 	Steam.setLobbyJoinable(SteamManager.currentLobby, false)
 	
-	SteamManager.verify_lobby_data.rpc(SteamManager.lobbyTeam, SteamManager.lobbyIsSplitScreen, SteamManager.lobby_connection_id)
+	SteamManager.verify_lobby_data.rpc(SteamManager.lobbyTeam, SteamManager.lobbySplitscreenTeam, SteamManager.lobbyIsSplitScreen, SteamManager.lobby_connection_id)
 	
 	# Load into game
 	client_start_game_retail_map.rpc(map_selected_index, game_mode_selected)

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://sd3wwqqdo6dy"
 path.s3tc="res://.godot/imported/Brown Square_Brown Building Wall 2.jpg-260ad646eb548d5d1d1ff759425ff24b.s3tc.ctex"
+path.etc2="res://.godot/imported/Brown Square_Brown Building Wall 2.jpg-260ad646eb548d5d1d1ff759425ff24b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Zulu 24/New Town/Brown Square_Brown Building Wall 2.jpg"
-dest_files=["res://.godot/imported/Brown Square_Brown Building Wall 2.jpg-260ad646eb548d5d1d1ff759425ff24b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Brown Square_Brown Building Wall 2.jpg-260ad646eb548d5d1d1ff759425ff24b.s3tc.ctex", "res://.godot/imported/Brown Square_Brown Building Wall 2.jpg-260ad646eb548d5d1d1ff759425ff24b.etc2.ctex"]
 
 [params]
 

@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	movement_code()
 	
 	select_item()
+	$"Camera3D/Axis Object".global_rotation_degrees = Vector3.ZERO
 
 #toggle_look_mode
 func movement_code():
@@ -41,6 +42,8 @@ func movement_code():
 
 	velocity = Velocity
 	move_and_slide()
+	if global_position.y < 1:
+		global_position.y = 1
 
 func select_item():
 	if (looking == false):

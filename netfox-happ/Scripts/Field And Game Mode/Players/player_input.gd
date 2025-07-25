@@ -28,7 +28,7 @@ func _gather():
 		movement.x = Input.get_axis("player_2_move_left", "player_2_move_right")
 		movement.y = Input.get_axis("player_2_move_forward", "player_2_move_backward")
 		shoot = Input.is_action_pressed("player_2_shoot")
-		look_vector = 50 * Input.get_vector("player_2_look_left", "player_2_look_right", "player_2_look_up", "player_2_look_down")
+		look_vector = 0.15 * Input.get_vector("player_2_look_left", "player_2_look_right", "player_2_look_up", "player_2_look_down")
 	
 	
 

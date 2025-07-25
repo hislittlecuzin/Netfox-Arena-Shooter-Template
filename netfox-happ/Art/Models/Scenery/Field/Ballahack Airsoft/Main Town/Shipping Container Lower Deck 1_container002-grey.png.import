@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc1a3jfsq6gto"
 path.s3tc="res://.godot/imported/Shipping Container Lower Deck 1_container002-grey.png-4692ee8ae527018ff134fb43093cbd6b.s3tc.ctex"
+path.etc2="res://.godot/imported/Shipping Container Lower Deck 1_container002-grey.png-4692ee8ae527018ff134fb43093cbd6b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Ballahack Airsoft/Main Town/Shipping Container Lower Deck 1_container002-grey.png"
-dest_files=["res://.godot/imported/Shipping Container Lower Deck 1_container002-grey.png-4692ee8ae527018ff134fb43093cbd6b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Shipping Container Lower Deck 1_container002-grey.png-4692ee8ae527018ff134fb43093cbd6b.s3tc.ctex", "res://.godot/imported/Shipping Container Lower Deck 1_container002-grey.png-4692ee8ae527018ff134fb43093cbd6b.etc2.ctex"]
 
 [params]
 

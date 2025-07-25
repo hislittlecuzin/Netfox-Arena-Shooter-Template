@@ -3,6 +3,7 @@ class_name lobby_username_entry
 
 @onready var usernameLabel = $username
 @onready var teamSelect : OptionButton = $teamSelect
+@onready var team2Select : OptionButton = $"teamSelect Player 2"
 @onready var splitscreenTick : CheckBox = $"Splitscreen CheckBox"
 
 var username: String
@@ -32,24 +33,29 @@ func _player_connection_set(connection_id: int):
 func splitscreen_check_box_toggled(toggled_on: bool) -> void:
 	if is_multiplayer_authority():
 		print("Tick box toggled")
+		if splitscreenTick.button_pressed:
+			team2Select.disabled = false
+		else:
+			team2Select.disabled = true
 		#pre_game_lobby. #tell pregame lobby to update self
-		relay_new_local_changes.rpc(teamSelect.selected, splitscreenTick.button_pressed)
+		relay_new_local_changes.rpc(teamSelect.selected, team2Select.selected, splitscreenTick.button_pressed)
 
 
 func team_select_item_selected(index: int) -> void:
 	if is_multiplayer_authority():
 		print("Team drop selected")
 		#tell pregame lobby to update self
-		relay_new_local_changes.rpc(teamSelect.selected, splitscreenTick.button_pressed)
+		relay_new_local_changes.rpc(teamSelect.selected, team2Select.selected, splitscreenTick.button_pressed)
 
 
 @rpc("authority", "call_local", "reliable")
-func relay_new_local_changes(team : int, splitscreen : bool):
+func relay_new_local_changes(team : int, team_p2 : int, splitscreen : bool):
 	var sender_id = multiplayer.get_remote_sender_id()
 	var conn_index = SteamManager.lobby_connection_id.find( sender_id )
 	print("Sender: ", str(sender_id) , " Conn Index: ", str(conn_index))
 	
 	SteamManager.lobbyTeam[conn_index] = team
+	SteamManager.lobbySplitscreenTeam[conn_index] = team_p2
 	SteamManager.lobbyIsSplitScreen[conn_index] = splitscreen
 	
 	teamSelect.selected = team

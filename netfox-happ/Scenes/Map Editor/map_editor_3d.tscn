@@ -37,3 +37,14 @@ material = SubResource("StandardMaterial3D_mcr1m")
 navigation_mesh = SubResource("NavigationMesh_mcr1m")
 
 [node name="Spawn Point" parent="NavigationRegion3D" instance=ExtResource("4_mcr1m")]
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+modulate = Color(1, 0, 1, 1)
+text = "ERROR! 
+Did not initialize \"new map.\"
+Please initialize a \"New Map\" with the
+\"New Map\" button!! "
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2, 0)

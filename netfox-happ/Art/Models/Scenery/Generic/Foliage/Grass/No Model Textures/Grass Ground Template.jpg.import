@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3gffhuk8wv46"
 path.s3tc="res://.godot/imported/Grass Ground Template.jpg-610fa80d3a0b7aa2f1e9411ff626583b.s3tc.ctex"
+path.etc2="res://.godot/imported/Grass Ground Template.jpg-610fa80d3a0b7aa2f1e9411ff626583b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/Models/Scenery/Generic/Foliage/Grass/No Model Textures/Grass Ground Template.jpg"
-dest_files=["res://.godot/imported/Grass Ground Template.jpg-610fa80d3a0b7aa2f1e9411ff626583b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Grass Ground Template.jpg-610fa80d3a0b7aa2f1e9411ff626583b.s3tc.ctex", "res://.godot/imported/Grass Ground Template.jpg-610fa80d3a0b7aa2f1e9411ff626583b.etc2.ctex"]
 
 [params]
 

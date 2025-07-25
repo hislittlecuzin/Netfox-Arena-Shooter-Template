@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddshs1kpdayoi"
 path.s3tc="res://.godot/imported/Army Flag_Army Flag.png-8d3fc5a8b0bfa8e6c54a83ae1483db24.s3tc.ctex"
+path.etc2="res://.godot/imported/Army Flag_Army Flag.png-8d3fc5a8b0bfa8e6c54a83ae1483db24.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Prefabs/Spawnable Assets/Special Assets/Dependency Assets/Army Flag_Army Flag.png"
-dest_files=["res://.godot/imported/Army Flag_Army Flag.png-8d3fc5a8b0bfa8e6c54a83ae1483db24.s3tc.ctex"]
+dest_files=["res://.godot/imported/Army Flag_Army Flag.png-8d3fc5a8b0bfa8e6c54a83ae1483db24.s3tc.ctex", "res://.godot/imported/Army Flag_Army Flag.png-8d3fc5a8b0bfa8e6c54a83ae1483db24.etc2.ctex"]
 
 [params]
 

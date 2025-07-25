@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://7pl4wc1dw7il"
 path.s3tc="res://.godot/imported/Far Centre Building_White I Outside Wall.jpg-c13353560a904e9b1427c6ea83afbeb1.s3tc.ctex"
+path.etc2="res://.godot/imported/Far Centre Building_White I Outside Wall.jpg-c13353560a904e9b1427c6ea83afbeb1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Zulu 24/New Town/Far Centre Building_White I Outside Wall.jpg"
-dest_files=["res://.godot/imported/Far Centre Building_White I Outside Wall.jpg-c13353560a904e9b1427c6ea83afbeb1.s3tc.ctex"]
+dest_files=["res://.godot/imported/Far Centre Building_White I Outside Wall.jpg-c13353560a904e9b1427c6ea83afbeb1.s3tc.ctex", "res://.godot/imported/Far Centre Building_White I Outside Wall.jpg-c13353560a904e9b1427c6ea83afbeb1.etc2.ctex"]
 
 [params]
 

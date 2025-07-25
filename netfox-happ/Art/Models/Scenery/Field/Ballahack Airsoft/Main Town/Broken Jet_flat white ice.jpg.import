@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgqo5uj6shd56"
 path.s3tc="res://.godot/imported/Broken Jet_flat white ice.jpg-1ab48dd37188a11367db25483734f138.s3tc.ctex"
+path.etc2="res://.godot/imported/Broken Jet_flat white ice.jpg-1ab48dd37188a11367db25483734f138.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Ballahack Airsoft/Main Town/Broken Jet_flat white ice.jpg"
-dest_files=["res://.godot/imported/Broken Jet_flat white ice.jpg-1ab48dd37188a11367db25483734f138.s3tc.ctex"]
+dest_files=["res://.godot/imported/Broken Jet_flat white ice.jpg-1ab48dd37188a11367db25483734f138.s3tc.ctex", "res://.godot/imported/Broken Jet_flat white ice.jpg-1ab48dd37188a11367db25483734f138.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://6e5pdxqm50iv"
 path.s3tc="res://.godot/imported/Camo Character_char_texture.png-23860db02a77faed0d25fb340f50496e.s3tc.ctex"
+path.etc2="res://.godot/imported/Camo Character_char_texture.png-23860db02a77faed0d25fb340f50496e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Player/Third Person/Base/Camo Character_char_texture.png"
-dest_files=["res://.godot/imported/Camo Character_char_texture.png-23860db02a77faed0d25fb340f50496e.s3tc.ctex"]
+dest_files=["res://.godot/imported/Camo Character_char_texture.png-23860db02a77faed0d25fb340f50496e.s3tc.ctex", "res://.godot/imported/Camo Character_char_texture.png-23860db02a77faed0d25fb340f50496e.etc2.ctex"]
 
 [params]
 

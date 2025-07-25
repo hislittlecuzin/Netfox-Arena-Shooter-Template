@@ -138,7 +138,12 @@ toggle_look_mode={
 3d_render/layer_2="Player 1 View Layer"
 3d_render/layer_3="Player 2 View Layer"
 
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true
+
 [steam]
 
-initialization/app_id=2478900
+initialization/app_id=480
 initialization/initialize_on_startup=true

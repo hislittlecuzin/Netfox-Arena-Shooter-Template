@@ -84,6 +84,8 @@ func _tick(delta, _t):
 			var resp_steamID = multiplayer.multiplayer_peer.get_steam64_from_peer_id( respawning_connections[_respawn_index] )
 			var resp_playerIndex = SteamManager.lobbyIDs.find( resp_steamID )
 			var resp_team = SteamManager.lobbyTeam[ resp_playerIndex ] # set spawn at right place...
+			if respawning_split_screen[ _respawn_index ] == e_dead_splitscreen.player_2:
+				resp_team = SteamManager.lobbySplitscreenTeam[ resp_playerIndex ]
 			
 			if resp_team == pregame_lobby.teams.red:
 				#temporatily allow respawning at all times. 
@@ -195,7 +197,14 @@ func posssess_pawn(connection_id: int, player_1: bool = true):
 	current_pawn.player_1 = player_1
 	current_pawn._set_input_authority()
 	current_pawn.field_manager = self
-	current_pawn.my_team = SteamManager.lobbyTeam[ SteamManager.lobby_connection_id.find(connection_id) ]
+	
+	#region split screen team check
+	if current_pawn.player_1 == true:
+		current_pawn.my_team = SteamManager.lobbyTeam[ SteamManager.lobby_connection_id.find(connection_id) ]
+	else: # Is player 2
+		current_pawn.my_team = SteamManager.lobbySplitscreenTeam[ SteamManager.lobby_connection_id.find(connection_id) ]
+	#endregion
+	
 	if connection_id == multiplayer.multiplayer_peer.get_peer_id_from_steam64( Steam.getSteamID() ):
 		if false == SteamManager.lobbyIsSplitScreen[ SteamManager.lobby_connection_id.find( connection_id ) ]:
 				current_pawn.cam.current = true
@@ -213,7 +222,7 @@ func posssess_pawn(connection_id: int, player_1: bool = true):
 	
 	var index_in_mp_manager = SteamManager.lobby_connection_id.find( connection_id )
 	print("Player connection : ", str(connection_id), " Team: ", str(SteamManager.lobbyTeam[index_in_mp_manager]) )
-	if SteamManager.lobbyTeam[index_in_mp_manager] == 0: #red
+	if current_pawn.my_team == 0: #SteamManager.lobbyTeam[index_in_mp_manager] == 0: #red
 		for cyl in current_pawn.arm_bands:
 			cyl.material = red_arm_band_material
 		current_pawn.global_position = red_spawns[red_spawn_point_index].global_position

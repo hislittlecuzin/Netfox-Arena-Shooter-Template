@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhwf5lhcpd55n"
 path.s3tc="res://.godot/imported/Large Single Story Store_White I Structure Wall.jpg-06022843be42674a8cb61895a4dfc5db.s3tc.ctex"
+path.etc2="res://.godot/imported/Large Single Story Store_White I Structure Wall.jpg-06022843be42674a8cb61895a4dfc5db.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Scenery/Field/Ballahack Airsoft/Main Town/Large Single Story Store_White I Structure Wall.jpg"
-dest_files=["res://.godot/imported/Large Single Story Store_White I Structure Wall.jpg-06022843be42674a8cb61895a4dfc5db.s3tc.ctex"]
+dest_files=["res://.godot/imported/Large Single Story Store_White I Structure Wall.jpg-06022843be42674a8cb61895a4dfc5db.s3tc.ctex", "res://.godot/imported/Large Single Story Store_White I Structure Wall.jpg-06022843be42674a8cb61895a4dfc5db.etc2.ctex"]
 
 [params]
 

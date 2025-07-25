@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://by8e0lxdybipf"
 path.s3tc="res://.godot/imported/Camo Character_Boot LOWA.png-3bfeb0430405da2d30d90441fa29ef1f.s3tc.ctex"
+path.etc2="res://.godot/imported/Camo Character_Boot LOWA.png-3bfeb0430405da2d30d90441fa29ef1f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Art/Models/Player/Third Person/Base/Camo Character_Boot LOWA.png"
-dest_files=["res://.godot/imported/Camo Character_Boot LOWA.png-3bfeb0430405da2d30d90441fa29ef1f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Camo Character_Boot LOWA.png-3bfeb0430405da2d30d90441fa29ef1f.s3tc.ctex", "res://.godot/imported/Camo Character_Boot LOWA.png-3bfeb0430405da2d30d90441fa29ef1f.etc2.ctex"]
 
 [params]
 
