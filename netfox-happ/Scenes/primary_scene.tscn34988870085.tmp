@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dibey6lqxsg76"]
+
+[ext_resource type="PackedScene" uid="uid://dbsqfk0r15xfe" path="res://Scenes/Menus/main_menu.tscn" id="1_v6tch"]
+[ext_resource type="PackedScene" uid="uid://bu3nimbew4jr8" path="res://Scenes/Menus/server_browser.tscn" id="2_pfvqn"]
+[ext_resource type="Texture2D" uid="uid://dxrde7t1n0qk8" path="res://icon.svg" id="2_uwwbh"]
+[ext_resource type="Script" uid="uid://chctgipuukj83" path="res://Scripts/Field And Game Mode/player_spawner_v3.gd" id="4_baogf"]
+[ext_resource type="PackedScene" uid="uid://qjcihwjykaqu" path="res://Prefabs/network_player.tscn" id="5_pfvqn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baogf"]
+albedo_texture = ExtResource("2_uwwbh")
+
+[node name="PrimaryScene" type="Node"]
+
+[node name="Main Menu" parent="." node_paths=PackedStringArray("server_browser", "spawner", "mpSpawner") instance=ExtResource("1_v6tch")]
+server_browser = NodePath("../ServerBrowser")
+spawner = NodePath("../Network/Player Spawner")
+mpSpawner = NodePath("../Network/MultiplayerSpawner")
+
+[node name="ServerBrowser" parent="." node_paths=PackedStringArray("mainMenu") instance=ExtResource("2_pfvqn")]
+visible = false
+mainMenu = NodePath("../Main Menu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_baogf")
+use_collision = true
+size = Vector3(50, 1, 40)
+
+[node name="Network" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Network"]
+_spawnable_scenes = PackedStringArray("uid://qjcihwjykaqu")
+spawn_path = NodePath("../../Players")
+script = ExtResource("4_baogf")
+player_scene = ExtResource("5_pfvqn")
+
+[node name="Player Spawner" type="Node" parent="Network"]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="SP" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
+
+[node name="SP5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4153, 0)
