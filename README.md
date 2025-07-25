@@ -20,6 +20,10 @@ Not fully feature complete.
 
 Any Gamer Words are to be ignored. 
 
+Something fucked up with not putting everything in the main branch. 
+You have to go to the Github Release branch. 
+License still applies to the github release branch. 
+
 
 #Features:
 
